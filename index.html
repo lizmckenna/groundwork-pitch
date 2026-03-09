@@ -1135,7 +1135,6 @@
     <nav class="section-nav">
         <a href="#s-overview" class="section-nav-link active" data-section="s-overview">Overview</a>
         <a href="#s-features" class="section-nav-link" data-section="s-features">Features</a>
-        <a href="#s-data" class="section-nav-link" data-section="s-data">Data</a>
         <a href="#s-compare" class="section-nav-link" data-section="s-compare">Comparison</a>
         <a href="#s-contact" class="section-nav-link" data-section="s-contact">Contact</a>
         <a href="#s-feedback" class="section-nav-link" data-section="s-feedback">Feedback</a>
@@ -1974,6 +1973,10 @@
                 </a>
                 <p style="font-size: var(--small-size); color: var(--text-tertiary); margin-top: 0.5rem;">Elizabeth McKenna</p>
             </div>
+            <a href="#s-feedback" style="display: inline-flex; align-items: center; gap: 0.5rem; margin-top: clamp(1rem, 2vh, 1.5rem); color: var(--text-tertiary); font-size: var(--small-size); text-decoration: none; transition: color 0.2s;">
+                <span>Have feedback? Share it on the next slide</span>
+                <svg style="width: 14px; height: 14px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </a>
         </div>
     </section>
 
@@ -2072,7 +2075,7 @@
                         String(this.slides.length).padStart(2, '0');
                 }
                 // Update section nav active state
-                const sectionIds = ['s-overview', 's-features', 's-data', 's-compare', 's-contact', 's-feedback'];
+                const sectionIds = ['s-overview', 's-features', 's-compare', 's-contact', 's-feedback'];
                 const sectionSlides = sectionIds.map(id => {
                     const el = document.getElementById(id);
                     return el ? Array.from(this.slides).indexOf(el) : -1;
