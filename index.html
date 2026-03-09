@@ -637,17 +637,13 @@
             transform: scale(1.15);
         }
 
-        .network-node.power {
+        .network-node.cascade {
             background: var(--accent);
-            box-shadow: 0 0 20px var(--accent-glow);
+            box-shadow: 0 0 15px var(--accent-glow);
         }
 
-        .network-node.strong {
-            background: #7c3aed;
-        }
-
-        .network-node.recruiter {
-            background: #60a5fa;
+        .network-node.terminal {
+            background: #c4b5fd;
         }
 
         .network-node.participant {
@@ -977,7 +973,7 @@
 </head>
 <body>
     <nav class="nav-dots"></nav>
-    <div class="slide-counter"><span class="current">01</span> / <span class="total">10</span></div>
+    <div class="slide-counter"><span class="current">01</span> / <span class="total">13</span></div>
     <div class="branding">Civic Power Lab</div>
 
     <!-- ==========================================
@@ -1035,7 +1031,7 @@
                 <line x1="28.35" y1="37.5" x2="18" y2="45" stroke="#5371ff" stroke-width="1" opacity="0.5"/>
             </svg>
             <h1>Groundwork</h1>
-            <p class="tagline">Organizing technology built by organizers, owned by organizers. Open source. Self-hosted. Your data, your rules.</p>
+            <p class="tagline">Organizing technology built by organizers, owned by organizers.</p>
             <div class="features">
                 <span class="feature-tag">Voice Notes for 1:1s</span>
                 <span class="feature-tag">Commitment Tracking</span>
@@ -1048,12 +1044,27 @@
     </section>
 
     <!-- ==========================================
-         SLIDE 2: THE PROBLEM
+         SLIDE 2: THE PROBLEM (Expanded)
+         ========================================== -->
+    <section class="slide problem-slide problem-expanded">
+        <div class="problem-content" style="max-width: 900px; text-align: left;">
+            <h2 style="font-size: var(--h2-size); font-weight: 600; margin-bottom: 2rem; text-align: center;">The Participation-Power Gap</h2>
+            <div style="display: grid; gap: 1.25rem; font-size: var(--body-size); color: var(--text-secondary); line-height: 1.7;">
+                <p>Organizing groups in the U.S. have grown more numerous, received more philanthropic investment, and made real gains for their constituents over the past twenty years. The infrastructure around them has grown too: the conferences, the consultants, the technology vendors.</p>
+                <p>And yet the balance of power in American political life has not shifted commensurately. More organizations, more funding, more activity—yet a participation-power gap that remains stubbornly wide.</p>
+                <p style="color: var(--text-primary);">The technology is part of that story. Groups have spent those twenty years paying increasing fees to vendors whose incentive is <em>contract growth</em>, not <em>movement growth</em>. The dominant tools—now owned by private equity firms—have gotten more expensive, more oriented toward large institutional clients, and no better at the thing that actually matters: helping organizers capture their data and learn from it.</p>
+                <p>The data hasn't gotten better. The practice hasn't gotten more sophisticated. Yet the investors have done fine.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         SLIDE 3: THE STRUCTURAL PROBLEM
          ========================================== -->
     <section class="slide problem-slide">
         <div class="section-header">
-            <h2>The Problem</h2>
-            <p>For 20 years, the organizing field has built political power on rented infrastructure.</p>
+            <h2>A Structural Problem</h2>
+            <p>When your tools are owned by people whose returns depend on your dependency, you get tools designed to retain you—not to develop your practice.</p>
         </div>
         <div class="cards">
             <div class="card">
@@ -1061,7 +1072,7 @@
                     <svg class="icon icon-lg" viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
                 </div>
                 <h3>Private Equity Ownership</h3>
-                <p>EveryAction acquired by Apax Partners ($80B fund). Your data serves investor returns.</p>
+                <p>EveryAction acquired by Apax Partners ($80B fund). Organizing data serves investor returns.</p>
             </div>
             <div class="card">
                 <div class="icon-wrapper">
@@ -1078,6 +1089,7 @@
                 <p>Can't build custom features. Features oriented toward large institutions, not grassroots.</p>
             </div>
         </div>
+        <p style="margin-top: 2rem; font-size: var(--body-size); color: var(--accent); text-align: center; max-width: 700px;">Groundwork is built on a different premise: that the organizations doing this work should own the infrastructure, own the data, and build the features that good organizing practice actually requires.</p>
     </section>
 
     <!-- ==========================================
@@ -1094,7 +1106,7 @@
                     <svg class="icon icon-lg" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
                 </div>
                 <h3>Modern Tooling</h3>
-                <p>Supabase, Next.js, Vercel, Claude Code—production builds in <span class="highlight">weeks, not years</span>.</p>
+                <p>Supabase, Next.js, Vercel, Claude Code—production builds in (production builds in weeks, not years).</p>
             </div>
             <div class="card">
                 <div class="icon-wrapper">
@@ -1121,7 +1133,74 @@
     </section>
 
     <!-- ==========================================
-         SLIDE 4: VOICE-FIRST NOTES
+         SLIDE 4: CRM ORGANIZER VIEW
+         ========================================== -->
+    <section class="slide crm-slide">
+        <div class="badge">Core Feature</div>
+        <div class="section-header">
+            <h2>Organizer Dashboard</h2>
+            <p>Your team at a glance. See everyone's engagement, commitments, and what needs attention.</p>
+        </div>
+        <div class="crm-table-container" style="max-width: 1100px; width: 100%; background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; overflow: hidden;">
+            <table class="crm-table" style="width: 100%; border-collapse: collapse; font-size: var(--small-size);">
+                <thead>
+                    <tr style="background: var(--bg-elevated); border-bottom: 1px solid var(--border);">
+                        <th style="padding: 0.75rem 1rem; text-align: left; color: var(--text-tertiary); font-weight: 500;">Name</th>
+                        <th style="padding: 0.75rem 1rem; text-align: left; color: var(--text-tertiary); font-weight: 500;">Team</th>
+                        <th style="padding: 0.75rem 1rem; text-align: left; color: var(--text-tertiary); font-weight: 500;">Role</th>
+                        <th style="padding: 0.75rem 1rem; text-align: center; color: var(--text-tertiary); font-weight: 500;">Engagement</th>
+                        <th style="padding: 0.75rem 1rem; text-align: left; color: var(--text-tertiary); font-weight: 500;">Next Commitment</th>
+                        <th style="padding: 0.75rem 1rem; text-align: center; color: var(--text-tertiary); font-weight: 500;">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="border-bottom: 1px solid var(--border);">
+                        <td style="padding: 0.75rem 1rem; color: var(--text-primary);">Maria Santos</td>
+                        <td style="padding: 0.75rem 1rem; color: var(--text-secondary);">Northside</td>
+                        <td style="padding: 0.75rem 1rem;"><span style="background: rgba(83,113,255,0.15); color: var(--accent); padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.7rem;">Team Lead</span></td>
+                        <td style="padding: 0.75rem 1rem; text-align: center;"><div style="display: flex; gap: 2px; justify-content: center;"><span style="width: 8px; height: 16px; background: var(--accent); border-radius: 2px;"></span><span style="width: 8px; height: 14px; background: var(--accent); border-radius: 2px;"></span><span style="width: 8px; height: 12px; background: var(--accent); border-radius: 2px;"></span><span style="width: 8px; height: 16px; background: var(--accent); border-radius: 2px;"></span><span style="width: 8px; height: 10px; background: rgba(83,113,255,0.3); border-radius: 2px;"></span></div></td>
+                        <td style="padding: 0.75rem 1rem; color: var(--text-secondary);">Bring 5 to training (Mar 15)</td>
+                        <td style="padding: 0.75rem 1rem; text-align: center;"><span style="background: rgba(245,158,11,0.15); color: var(--warning); padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.7rem;">Pending</span></td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border);">
+                        <td style="padding: 0.75rem 1rem; color: var(--text-primary);">James Chen</td>
+                        <td style="padding: 0.75rem 1rem; color: var(--text-secondary);">Northside</td>
+                        <td style="padding: 0.75rem 1rem;"><span style="background: rgba(124,58,237,0.15); color: #a78bfa; padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.7rem;">Canvasser</span></td>
+                        <td style="padding: 0.75rem 1rem; text-align: center;"><div style="display: flex; gap: 2px; justify-content: center;"><span style="width: 8px; height: 10px; background: #7c3aed; border-radius: 2px;"></span><span style="width: 8px; height: 6px; background: #7c3aed; border-radius: 2px;"></span><span style="width: 8px; height: 4px; background: rgba(124,58,237,0.3); border-radius: 2px;"></span><span style="width: 8px; height: 4px; background: rgba(124,58,237,0.3); border-radius: 2px;"></span><span style="width: 8px; height: 4px; background: rgba(124,58,237,0.3); border-radius: 2px;"></span></div></td>
+                        <td style="padding: 0.75rem 1rem; color: var(--text-secondary);">Follow up with Rosa (Mar 10)</td>
+                        <td style="padding: 0.75rem 1rem; text-align: center;"><span style="background: rgba(239,68,68,0.15); color: var(--error); padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.7rem;">Overdue</span></td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border);">
+                        <td style="padding: 0.75rem 1rem; color: var(--text-primary);">Angela Torres</td>
+                        <td style="padding: 0.75rem 1rem; color: var(--text-secondary);">Westside</td>
+                        <td style="padding: 0.75rem 1rem;"><span style="background: rgba(83,113,255,0.15); color: var(--accent); padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.7rem;">Team Lead</span></td>
+                        <td style="padding: 0.75rem 1rem; text-align: center;"><div style="display: flex; gap: 2px; justify-content: center;"><span style="width: 8px; height: 16px; background: var(--accent); border-radius: 2px;"></span><span style="width: 8px; height: 16px; background: var(--accent); border-radius: 2px;"></span><span style="width: 8px; height: 14px; background: var(--accent); border-radius: 2px;"></span><span style="width: 8px; height: 12px; background: var(--accent); border-radius: 2px;"></span><span style="width: 8px; height: 16px; background: var(--accent); border-radius: 2px;"></span></div></td>
+                        <td style="padding: 0.75rem 1rem; color: var(--text-secondary);">Host house meeting (Mar 18)</td>
+                        <td style="padding: 0.75rem 1rem; text-align: center;"><span style="background: rgba(34,197,94,0.15); color: var(--success); padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.7rem;">On Track</span></td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border);">
+                        <td style="padding: 0.75rem 1rem; color: var(--text-primary);">David Kim</td>
+                        <td style="padding: 0.75rem 1rem; color: var(--text-secondary);">Eastside</td>
+                        <td style="padding: 0.75rem 1rem;"><span style="background: rgba(96,165,250,0.15); color: #60a5fa; padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.7rem;">New Vol</span></td>
+                        <td style="padding: 0.75rem 1rem; text-align: center;"><div style="display: flex; gap: 2px; justify-content: center;"><span style="width: 8px; height: 8px; background: #60a5fa; border-radius: 2px;"></span><span style="width: 8px; height: 4px; background: rgba(96,165,250,0.3); border-radius: 2px;"></span><span style="width: 8px; height: 4px; background: rgba(96,165,250,0.3); border-radius: 2px;"></span><span style="width: 8px; height: 4px; background: rgba(96,165,250,0.3); border-radius: 2px;"></span><span style="width: 8px; height: 4px; background: rgba(96,165,250,0.3); border-radius: 2px;"></span></div></td>
+                        <td style="padding: 0.75rem 1rem; color: var(--text-secondary);">Attend training (Mar 15)</td>
+                        <td style="padding: 0.75rem 1rem; text-align: center;"><span style="background: rgba(245,158,11,0.15); color: var(--warning); padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.7rem;">Pending</span></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem 1rem; color: var(--text-primary);">Rosa Martinez</td>
+                        <td style="padding: 0.75rem 1rem; color: var(--text-secondary);">Northside</td>
+                        <td style="padding: 0.75rem 1rem;"><span style="background: rgba(96,165,250,0.15); color: #60a5fa; padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.7rem;">New Vol</span></td>
+                        <td style="padding: 0.75rem 1rem; text-align: center;"><div style="display: flex; gap: 2px; justify-content: center;"><span style="width: 8px; height: 6px; background: #60a5fa; border-radius: 2px;"></span><span style="width: 8px; height: 4px; background: rgba(96,165,250,0.3); border-radius: 2px;"></span><span style="width: 8px; height: 4px; background: rgba(96,165,250,0.3); border-radius: 2px;"></span><span style="width: 8px; height: 4px; background: rgba(96,165,250,0.3); border-radius: 2px;"></span><span style="width: 8px; height: 4px; background: rgba(96,165,250,0.3); border-radius: 2px;"></span></div></td>
+                        <td style="padding: 0.75rem 1rem; color: var(--text-secondary);">—</td>
+                        <td style="padding: 0.75rem 1rem; text-align: center;"><span style="background: rgba(113,113,122,0.15); color: var(--text-tertiary); padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.7rem;">No Commit</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         SLIDE 5: VOICE-FIRST NOTES
          ========================================== -->
     <section class="slide feature-slide">
         <div class="badge">Core Feature</div>
@@ -1168,7 +1247,7 @@
         <div class="section-header">
             <div class="badge">Core Feature</div>
             <h2>Commitment Tracking</h2>
-            <p>The distinction between organizing and mobilizing. Commitments tracked to completion—not noted and forgotten.</p>
+            <p>Commitments tracked to completion, not noted and forgotten.</p>
         </div>
         <div class="flow-container">
             <div class="flow">
@@ -1213,73 +1292,85 @@
     </section>
 
     <!-- ==========================================
-         SLIDE 6: ANALYTICS EXAMPLE
+         SLIDE 7: ANALYTICS - EVENT TABLE
          ========================================== -->
     <section class="slide analytics-slide">
         <div class="section-header">
-            <h2>Research-Ready Analytics</h2>
-            <p>Real data from 19 organizing groups. Direct export to POLIS research database.</p>
+            <h2>Organizing Analytics</h2>
+            <p>Event-level data that helps organizers learn. Who's building leaders? Where are people flaking?</p>
         </div>
-        <div class="charts-grid">
-            <!-- Attrition Donut -->
+        <div class="charts-grid" style="grid-template-columns: 1.4fr 1fr;">
+            <!-- Event Performance Table -->
             <div class="chart-card">
-                <h3>Participant Retention</h3>
-                <p class="subtitle">N=41,625 participants across 19 organizations</p>
-                <div class="donut-container">
-                    <div class="donut-wrapper">
-                        <svg viewBox="0 0 100 100" style="transform: rotate(-90deg);">
-                            <!-- Grey: 70% -->
-                            <circle cx="50" cy="50" r="35" fill="none" stroke="#3f3f46" stroke-width="12"
-                                    stroke-dasharray="153.9 219.9" stroke-dashoffset="0"/>
-                            <!-- Blue: 21% -->
-                            <circle cx="50" cy="50" r="35" fill="none" stroke="#60a5fa" stroke-width="12"
-                                    stroke-dasharray="46.2 219.9" stroke-dashoffset="-153.9"/>
-                            <!-- Purple: 9% -->
-                            <circle cx="50" cy="50" r="35" fill="none" stroke="#5371ff" stroke-width="12"
-                                    stroke-dasharray="19.8 219.9" stroke-dashoffset="-200.1"/>
-                        </svg>
-                        <div class="donut-center">
-                            <div class="donut-value">70%</div>
-                            <div class="donut-label">exit</div>
-                        </div>
-                    </div>
-                    <div class="legend">
-                        <div class="legend-item">
-                            <div class="legend-dot" style="background: #3f3f46;"></div>
-                            <span class="legend-text">1 event (exit)</span>
-                            <span class="legend-value" style="color: #71717a;">70%</span>
-                        </div>
-                        <div class="legend-item">
-                            <div class="legend-dot" style="background: #60a5fa;"></div>
-                            <span class="legend-text">2-4 events (engaged)</span>
-                            <span class="legend-value" style="color: #60a5fa;">21%</span>
-                        </div>
-                        <div class="legend-item">
-                            <div class="legend-dot" style="background: #5371ff;"></div>
-                            <span class="legend-text">5+ events (leaders)</span>
-                            <span class="legend-value" style="color: #5371ff;">9%</span>
-                        </div>
-                    </div>
-                </div>
+                <h3>Event Performance by Organizer</h3>
+                <p class="subtitle">Last 30 days</p>
+                <table style="width: 100%; border-collapse: collapse; font-size: 0.8rem; margin-top: 1rem;">
+                    <thead>
+                        <tr style="border-bottom: 1px solid var(--border);">
+                            <th style="padding: 0.5rem; text-align: left; color: var(--text-tertiary); font-weight: 500;">Event</th>
+                            <th style="padding: 0.5rem; text-align: left; color: var(--text-tertiary); font-weight: 500;">Organizer</th>
+                            <th style="padding: 0.5rem; text-align: center; color: var(--text-tertiary); font-weight: 500;">Flake</th>
+                            <th style="padding: 0.5rem; text-align: center; color: var(--text-tertiary); font-weight: 500;">Retention</th>
+                            <th style="padding: 0.5rem; text-align: center; color: var(--text-tertiary); font-weight: 500;">Leaders</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid var(--border);">
+                            <td style="padding: 0.5rem; color: var(--text-primary);">Canvass Training</td>
+                            <td style="padding: 0.5rem; color: var(--text-secondary);">Maria S.</td>
+                            <td style="padding: 0.5rem; text-align: center; color: var(--success);">12%</td>
+                            <td style="padding: 0.5rem; text-align: center; color: var(--accent);">67%</td>
+                            <td style="padding: 0.5rem; text-align: center; color: #c4b5fd;">3</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border);">
+                            <td style="padding: 0.5rem; color: var(--text-primary);">House Meeting</td>
+                            <td style="padding: 0.5rem; color: var(--text-secondary);">Angela T.</td>
+                            <td style="padding: 0.5rem; text-align: center; color: var(--success);">8%</td>
+                            <td style="padding: 0.5rem; text-align: center; color: var(--accent);">71%</td>
+                            <td style="padding: 0.5rem; text-align: center; color: #c4b5fd;">2</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border);">
+                            <td style="padding: 0.5rem; color: var(--text-primary);">Phone Bank</td>
+                            <td style="padding: 0.5rem; color: var(--text-secondary);">James C.</td>
+                            <td style="padding: 0.5rem; text-align: center; color: var(--error);">45%</td>
+                            <td style="padding: 0.5rem; text-align: center; color: var(--text-tertiary);">23%</td>
+                            <td style="padding: 0.5rem; text-align: center; color: var(--text-tertiary);">0</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border);">
+                            <td style="padding: 0.5rem; color: var(--text-primary);">Rally</td>
+                            <td style="padding: 0.5rem; color: var(--text-secondary);">David K.</td>
+                            <td style="padding: 0.5rem; text-align: center; color: var(--warning);">28%</td>
+                            <td style="padding: 0.5rem; text-align: center; color: var(--text-secondary);">34%</td>
+                            <td style="padding: 0.5rem; text-align: center; color: #c4b5fd;">1</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 0.5rem; color: var(--text-primary);">1:1 Blitz</td>
+                            <td style="padding: 0.5rem; color: var(--text-secondary);">Maria S.</td>
+                            <td style="padding: 0.5rem; text-align: center; color: var(--success);">5%</td>
+                            <td style="padding: 0.5rem; text-align: center; color: var(--accent);">82%</td>
+                            <td style="padding: 0.5rem; text-align: center; color: #c4b5fd;">4</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
 
             <!-- Network Visualization -->
             <div class="chart-card">
                 <h3>Recruitment Network</h3>
-                <p class="subtitle">Who recruited whom — cascade vs. hub-and-spoke patterns</p>
+                <p class="subtitle">Cascade vs. Terminal Recruiters</p>
                 <div class="network-viz" id="network"></div>
-                <div class="legend" style="margin-top: 1rem; display: flex; gap: 1.5rem; justify-content: center;">
+                <div class="legend" style="margin-top: 1rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
                     <div class="legend-item">
                         <div class="legend-dot" style="background: #5371ff;"></div>
-                        <span class="legend-text">Power Recruiter</span>
+                        <span class="legend-text">Cascade</span>
                     </div>
                     <div class="legend-item">
-                        <div class="legend-dot" style="background: #7c3aed;"></div>
-                        <span class="legend-text">Strong</span>
+                        <div class="legend-dot" style="background: #c4b5fd;"></div>
+                        <span class="legend-text">Terminal</span>
                     </div>
                     <div class="legend-item">
-                        <div class="legend-dot" style="background: #60a5fa;"></div>
-                        <span class="legend-text">Recruiter</span>
+                        <div class="legend-dot" style="background: var(--bg-elevated); border: 1px solid var(--border);"></div>
+                        <span class="legend-text">Participant</span>
                     </div>
                 </div>
             </div>
@@ -1287,14 +1378,14 @@
     </section>
 
     <!-- ==========================================
-         SLIDE 7: WEEKLY REFLECTION
+         SLIDE 8: WEEKLY REFLECTION
          ========================================== -->
     <section class="slide reflect-slide feature-slide">
         <div class="badge">Core Feature</div>
         <div class="content-grid">
             <div class="text-content">
                 <h2>Weekly Organizer Reflection</h2>
-                <p class="lead">Not a reporting burden—a practice that makes organizers better. Pre-populate everything possible, leave space only for reflection.</p>
+                <p class="lead">A practice that makes organizers better (not a reporting burden). The tool pre-populates all one-to-ones and events held that week, leaving space for reflection.</p>
                 <ul class="fields">
                     <li class="field-row">
                         <span class="field-name">headline</span>
@@ -1317,13 +1408,22 @@
                         <span class="field-desc">One person to invest in next week</span>
                     </li>
                 </ul>
+                <p style="margin-top: 1.5rem; font-size: var(--small-size); color: var(--text-tertiary);"><svg style="width: 14px; height: 14px; vertical-align: middle; margin-right: 0.25rem; stroke: var(--text-tertiary);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>Supervisor receives push when submitted</p>
             </div>
             <div class="memo-card">
                 <div class="memo-header">weekly_reflection // 2026-03-07</div>
                 <div class="memo-headline">"Breakthrough with the Northside team"</div>
                 <p class="memo-body">Took a risk pushing Maria to co-lead the house meeting—she crushed it. Still avoiding the hard conversation with James about his follow-through...</p>
-                <div class="coach-note">Coach: "You took a real risk with Maria and it paid off. What did you see in her that made you believe she was ready for that?"</div>
-                <div class="coach-note" style="border-top: none; margin-top: 0.5rem;">Coach: "What is James getting out of letting himself off the hook?"</div>
+                <div style="margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid var(--border);">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                        <div style="width: 24px; height: 24px; background: var(--accent-subtle); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                            <svg style="width: 12px; height: 12px; stroke: var(--accent);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        </div>
+                        <span style="font-size: 0.75rem; color: var(--accent); font-weight: 500;">Sarah (Supervisor)</span>
+                    </div>
+                    <p class="coach-note" style="border-top: none; margin-top: 0; padding-top: 0;">"You took a real risk with Maria and it paid off. What did you see in her that made you believe she was ready for that?"</p>
+                    <p class="coach-note" style="border-top: none; margin-top: 0.5rem; padding-top: 0;">"What is James getting out of letting himself off the hook?"</p>
+                </div>
             </div>
         </div>
     </section>
@@ -1412,7 +1512,80 @@
     </section>
 
     <!-- ==========================================
-         SLIDE 9: COMPARISON
+         SLIDE 10: COACH/SUPERVISOR DASHBOARD
+         ========================================== -->
+    <section class="slide coach-slide">
+        <div class="badge">Core Feature</div>
+        <div class="section-header">
+            <h2>Supervisor Dashboard</h2>
+            <p>See your whole team. Know who needs attention. Respond in seconds.</p>
+        </div>
+        <div style="max-width: 1000px; width: 100%; display: grid; grid-template-columns: 1fr 1.2fr; gap: 1.5rem;">
+            <!-- Organizer Status List -->
+            <div class="chart-card" style="background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem;">
+                <h3 style="font-size: 0.9rem; font-weight: 600; margin-bottom: 1rem;">Team Status</h3>
+                <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                    <div style="display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem; background: rgba(239,68,68,0.08); border-radius: 8px; border-left: 3px solid var(--error);">
+                        <div style="width: 32px; height: 32px; background: var(--bg-elevated); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 600;">JC</div>
+                        <div style="flex: 1;">
+                            <div style="font-size: 0.85rem; font-weight: 500;">James Chen</div>
+                            <div style="font-size: 0.7rem; color: var(--error);">Reflection overdue (3 days)</div>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem; background: rgba(245,158,11,0.08); border-radius: 8px; border-left: 3px solid var(--warning);">
+                        <div style="width: 32px; height: 32px; background: var(--bg-elevated); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 600;">DK</div>
+                        <div style="flex: 1;">
+                            <div style="font-size: 0.85rem; font-weight: 500;">David Kim</div>
+                            <div style="font-size: 0.7rem; color: var(--warning);">Awaiting response</div>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem; background: rgba(34,197,94,0.08); border-radius: 8px; border-left: 3px solid var(--success);">
+                        <div style="width: 32px; height: 32px; background: var(--bg-elevated); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 600;">MS</div>
+                        <div style="flex: 1;">
+                            <div style="font-size: 0.85rem; font-weight: 500;">Maria Santos</div>
+                            <div style="font-size: 0.7rem; color: var(--success);">Responded</div>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem; background: rgba(34,197,94,0.08); border-radius: 8px; border-left: 3px solid var(--success);">
+                        <div style="width: 32px; height: 32px; background: var(--bg-elevated); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 600;">AT</div>
+                        <div style="flex: 1;">
+                            <div style="font-size: 0.85rem; font-weight: 500;">Angela Torres</div>
+                            <div style="font-size: 0.7rem; color: var(--success);">Responded</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Response Panel -->
+            <div class="chart-card" style="background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem;">
+                <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                    <div style="width: 28px; height: 28px; background: var(--bg-elevated); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; font-weight: 600;">MS</div>
+                    <div>
+                        <div style="font-size: 0.85rem; font-weight: 500;">Maria Santos</div>
+                        <div style="font-size: 0.7rem; color: var(--text-tertiary);">Submitted 2 hours ago</div>
+                    </div>
+                </div>
+                <div style="background: var(--bg-primary); border-radius: 8px; padding: 1rem; margin-bottom: 1rem; font-size: 0.8rem; color: var(--text-secondary); line-height: 1.6;">
+                    <em>"Took a risk pushing Maria to co-lead the house meeting—she crushed it. Still avoiding the hard conversation with James about his follow-through..."</em>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <div style="display: flex; gap: 0.5rem;">
+                        <button style="flex: 1; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 6px; padding: 0.5rem; font-size: 0.75rem; color: var(--text-secondary); cursor: pointer; text-align: left;">"You took a real risk with Maria and it paid off. What did you see in her?"</button>
+                    </div>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <button style="flex: 1; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 6px; padding: 0.5rem; font-size: 0.75rem; color: var(--text-secondary); cursor: pointer; text-align: left;">"What is James getting out of letting himself off the hook?"</button>
+                    </div>
+                    <div style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
+                        <input type="text" placeholder="Or write your own..." style="flex: 1; background: var(--bg-primary); border: 1px solid var(--border); border-radius: 6px; padding: 0.5rem 0.75rem; font-size: 0.75rem; color: var(--text-primary);">
+                        <button style="background: var(--accent); border: none; border-radius: 6px; padding: 0.5rem 1rem; font-size: 0.75rem; color: white; cursor: pointer; font-weight: 500;">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         SLIDE 11: COMPARISON
          ========================================== -->
     <section class="slide compare-slide">
         <div class="section-header">
@@ -1482,7 +1655,7 @@
     <section class="slide cta-slide">
         <div class="cta-content">
             <h2>Let's Build This</h2>
-            <p class="lead">The organizing world has built extraordinary political power on rented infrastructure for 20 years. Groundwork is a chance to change that.</p>
+            <p class="lead">The organizing world has tried to build political power on rented infrastructure for 20 years. Groundwork is a chance to change that.</p>
             <div class="steps-list">
                 <div class="step"><span class="step-num">01</span> Create Supabase project</div>
                 <div class="step"><span class="step-num">02</span> Clone starter repo</div>
@@ -1573,68 +1746,57 @@
                 const width = container.offsetWidth;
                 const height = container.offsetHeight;
 
-                // Network nodes based on purple-line data
+                // Network nodes - Cascade vs Terminal recruiters
                 const nodes = [
-                    // Power recruiters (10+)
-                    { id: 1, x: 0.5, y: 0.4, size: 28, type: 'power', label: 'M' },
-                    { id: 2, x: 0.3, y: 0.5, size: 24, type: 'power', label: 'J' },
-                    // Strong recruiters (5-9)
-                    { id: 3, x: 0.7, y: 0.35, size: 20, type: 'strong', label: 'A' },
-                    { id: 4, x: 0.25, y: 0.3, size: 18, type: 'strong', label: 'T' },
-                    { id: 5, x: 0.65, y: 0.6, size: 16, type: 'strong', label: 'R' },
-                    // Regular recruiters
-                    { id: 6, x: 0.4, y: 0.25, size: 14, type: 'recruiter', label: '' },
-                    { id: 7, x: 0.55, y: 0.55, size: 12, type: 'recruiter', label: '' },
-                    { id: 8, x: 0.15, y: 0.45, size: 12, type: 'recruiter', label: '' },
-                    { id: 9, x: 0.8, y: 0.5, size: 12, type: 'recruiter', label: '' },
-                    { id: 10, x: 0.35, y: 0.65, size: 10, type: 'recruiter', label: '' },
-                    // Participants
-                    { id: 11, x: 0.45, y: 0.15, size: 8, type: 'participant', label: '' },
-                    { id: 12, x: 0.6, y: 0.2, size: 8, type: 'participant', label: '' },
-                    { id: 13, x: 0.75, y: 0.25, size: 8, type: 'participant', label: '' },
-                    { id: 14, x: 0.85, y: 0.4, size: 8, type: 'participant', label: '' },
-                    { id: 15, x: 0.9, y: 0.6, size: 8, type: 'participant', label: '' },
-                    { id: 16, x: 0.78, y: 0.7, size: 8, type: 'participant', label: '' },
-                    { id: 17, x: 0.55, y: 0.75, size: 8, type: 'participant', label: '' },
-                    { id: 18, x: 0.4, y: 0.8, size: 8, type: 'participant', label: '' },
-                    { id: 19, x: 0.2, y: 0.7, size: 8, type: 'participant', label: '' },
-                    { id: 20, x: 0.1, y: 0.55, size: 8, type: 'participant', label: '' },
-                    { id: 21, x: 0.12, y: 0.35, size: 8, type: 'participant', label: '' },
-                    { id: 22, x: 0.22, y: 0.2, size: 8, type: 'participant', label: '' },
+                    // Cascade recruiters (recruit people who recruit others)
+                    { id: 1, x: 0.5, y: 0.35, size: 26, type: 'cascade', label: 'M' },
+                    { id: 2, x: 0.25, y: 0.45, size: 22, type: 'cascade', label: 'A' },
+                    { id: 3, x: 0.7, y: 0.4, size: 20, type: 'cascade', label: 'J' },
+                    // Terminal recruiters (recruit but their recruits don't recruit)
+                    { id: 4, x: 0.4, y: 0.55, size: 16, type: 'terminal', label: '' },
+                    { id: 5, x: 0.6, y: 0.6, size: 14, type: 'terminal', label: '' },
+                    { id: 6, x: 0.15, y: 0.55, size: 14, type: 'terminal', label: '' },
+                    { id: 7, x: 0.8, y: 0.55, size: 12, type: 'terminal', label: '' },
+                    { id: 8, x: 0.35, y: 0.25, size: 12, type: 'terminal', label: '' },
+                    // Participants (recruited but don't recruit)
+                    { id: 9, x: 0.5, y: 0.15, size: 8, type: 'participant', label: '' },
+                    { id: 10, x: 0.65, y: 0.2, size: 8, type: 'participant', label: '' },
+                    { id: 11, x: 0.85, y: 0.35, size: 8, type: 'participant', label: '' },
+                    { id: 12, x: 0.9, y: 0.55, size: 8, type: 'participant', label: '' },
+                    { id: 13, x: 0.85, y: 0.7, size: 8, type: 'participant', label: '' },
+                    { id: 14, x: 0.65, y: 0.8, size: 8, type: 'participant', label: '' },
+                    { id: 15, x: 0.45, y: 0.75, size: 8, type: 'participant', label: '' },
+                    { id: 16, x: 0.3, y: 0.7, size: 8, type: 'participant', label: '' },
+                    { id: 17, x: 0.1, y: 0.7, size: 8, type: 'participant', label: '' },
+                    { id: 18, x: 0.08, y: 0.4, size: 8, type: 'participant', label: '' },
+                    { id: 19, x: 0.2, y: 0.25, size: 8, type: 'participant', label: '' },
                 ];
 
-                // Edges
+                // Edges - cascade connections vs terminal
                 const edges = [
-                    // Power recruiter 1 connections (cascade)
+                    // Cascade recruiter 1 (M) - recruits other recruiters
+                    { from: 1, to: 2, cascade: true },
                     { from: 1, to: 3, cascade: true },
-                    { from: 1, to: 5, cascade: true },
-                    { from: 1, to: 7, cascade: true },
-                    { from: 1, to: 11, cascade: false },
-                    { from: 1, to: 12, cascade: false },
-                    // Power recruiter 2 connections
-                    { from: 2, to: 4, cascade: true },
+                    { from: 1, to: 4, cascade: true },
+                    { from: 1, to: 9, cascade: false },
+                    // Cascade recruiter 2 (A) - recruits recruiters
+                    { from: 2, to: 6, cascade: true },
                     { from: 2, to: 8, cascade: true },
-                    { from: 2, to: 10, cascade: true },
+                    { from: 2, to: 18, cascade: false },
                     { from: 2, to: 19, cascade: false },
-                    { from: 2, to: 20, cascade: false },
-                    // Strong recruiters
-                    { from: 3, to: 9, cascade: true },
-                    { from: 3, to: 13, cascade: false },
-                    { from: 3, to: 14, cascade: false },
-                    { from: 4, to: 6, cascade: true },
-                    { from: 4, to: 21, cascade: false },
-                    { from: 4, to: 22, cascade: false },
-                    { from: 5, to: 15, cascade: false },
-                    { from: 5, to: 16, cascade: false },
-                    { from: 5, to: 17, cascade: false },
-                    // Regular recruiters
-                    { from: 6, to: 11, cascade: false },
-                    { from: 7, to: 17, cascade: false },
-                    { from: 8, to: 20, cascade: false },
-                    { from: 9, to: 14, cascade: false },
-                    { from: 9, to: 15, cascade: false },
-                    { from: 10, to: 18, cascade: false },
-                    { from: 10, to: 19, cascade: false },
+                    // Cascade recruiter 3 (J)
+                    { from: 3, to: 5, cascade: true },
+                    { from: 3, to: 7, cascade: true },
+                    { from: 3, to: 10, cascade: false },
+                    { from: 3, to: 11, cascade: false },
+                    // Terminal recruiters - only recruit participants
+                    { from: 4, to: 15, cascade: false },
+                    { from: 4, to: 16, cascade: false },
+                    { from: 5, to: 13, cascade: false },
+                    { from: 5, to: 14, cascade: false },
+                    { from: 6, to: 17, cascade: false },
+                    { from: 7, to: 12, cascade: false },
+                    { from: 8, to: 9, cascade: false },
                 ];
 
                 // Draw edges first
