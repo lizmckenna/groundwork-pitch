@@ -1010,8 +1010,13 @@
         .feedback-form input:valid:not(:placeholder-shown),
         .feedback-form textarea:valid:not(:placeholder-shown) {
             border-color: #5371ff;
+            background: rgba(83, 113, 255, 0.1);
             outline: none;
-            box-shadow: 0 0 0 1px rgba(83, 113, 255, 0.2);
+        }
+
+        .feedback-form input::selection,
+        .feedback-form textarea::selection {
+            background: rgba(83, 113, 255, 0.4);
         }
 
         .feedback-form input:invalid:not(:placeholder-shown):not(:focus),
