@@ -56,6 +56,26 @@
     object-fit: contain;
     border-radius: 8px;
   }
+  @media (max-width: 640px) {
+    .cover {
+      padding: 48px 28px 36px;
+      min-height: auto;
+    }
+    .cover-snowflake {
+      position: static;
+      transform: none;
+      width: 80px;
+      height: 80px;
+      margin-bottom: 16px;
+    }
+    .cover h1 {
+      font-size: 42px;
+      letter-spacing: -1.5px;
+    }
+    .cover-sub {
+      font-size: 14px;
+    }
+  }
   .cover-label {
     font-size: 10px;
     font-weight: 700;
@@ -144,8 +164,9 @@
 
   /* ── EPIGRAPH ───────────────────────────────────────── */
   .epigraph {
-    font-size: 14px;
-    font-style: italic;
+    font-size: 13px;
+    font-style: normal;
+    font-family: 'Georgia', 'Times New Roman', serif;
     color: var(--gray);
     margin: 0 0 20px 0;
     padding: 0;
@@ -477,6 +498,35 @@
   .yes { color: var(--emerald); font-weight: 700; }
   .no  { color: #DC2626; }
 
+  /* ── TABLE OF CONTENTS ────────────────────────────── */
+  .toc {
+    padding: 28px 40px;
+    border-bottom: 1px solid var(--border);
+  }
+  .toc-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 10px;
+  }
+  .toc-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 16px;
+  }
+  .toc-list li a {
+    font-size: 13px;
+    font-weight: 500;
+    color: #5371ff;
+    text-decoration: none;
+  }
+  .toc-list li a:hover {
+    text-decoration: underline;
+  }
+
   /* ── FOOTER ────────────────────────────────────────── */
   .doc-footer {
     background: var(--black);
@@ -513,10 +563,28 @@
   </div>
 </div>
 
+<nav class="toc">
+  <div class="toc-label">Contents</div>
+  <ul class="toc-list">
+    <li><a href="#problem">The Problem</a></li>
+    <li><a href="#premise">The Premise</a></li>
+    <li><a href="#contacts">Contacts</a></li>
+    <li><a href="#map">Geospatial Map</a></li>
+    <li><a href="#leaderboards">Leaderboards</a></li>
+    <li><a href="#voice-notes">Voice Notes</a></li>
+    <li><a href="#commitments">Commitments</a></li>
+    <li><a href="#events">Events &amp; Check-in</a></li>
+    <li><a href="#reflection">Weekly Reflection</a></li>
+    <li><a href="#comparison">Why Groundwork</a></li>
+    <li><a href="#rollout">Rollout</a></li>
+    <li><a href="#security">Security</a></li>
+  </ul>
+</nav>
+
 <div class="page">
 
   <!-- THE PROBLEM -->
-  <div class="section">
+  <div class="section" id="problem">
     <div class="section-label">The Problem</div>
     <h2>Twenty years of growth. A stubbornly wide power gap.</h2>
 
@@ -525,7 +593,7 @@
     <p>And yet the balance of power in American political life has not shifted commensurately. There are more organizations, more funding, and more activity, yet a participation-power gap that remains stubbornly wide.</p>
 
     <div class="pullquote">
-      <p>"The technology is part of that story. Groups have spent twenty years paying increasing fees to vendors whose incentive is contract growth, not movement growth."</p>
+      <p>The technology is part of that story. Groups have spent twenty years paying increasing fees to vendors whose incentive is contract growth, not movement growth.</p>
     </div>
 
     <p>The dominant tools, now owned by private equity firms, have gotten more expensive, more oriented toward large institutional clients, and no better at the thing that actually matters: helping organizers capture their data and learn from it. The data has not gotten better. The practice has not gotten more sophisticated. The investors have done fine.</p>
@@ -546,7 +614,7 @@
   </div>
 
   <!-- THE PREMISE -->
-  <div class="section">
+  <div class="section" id="premise">
     <div class="section-label">The Premise</div>
     <h2>Infrastructure owned by organizers, built for organizing practice</h2>
 
@@ -581,7 +649,7 @@
   </div>
 
   <!-- CONTACTS + ACTIVITY VIEW -->
-  <div class="section">
+  <div class="section" id="contacts">
     <div class="section-label">Core Feature</div>
     <h2>A contact database built for organizing data</h2>
 
@@ -644,7 +712,7 @@
   </div>
 
   <!-- GEOSPATIAL MAP -->
-  <div class="section">
+  <div class="section" id="map">
     <div class="section-label">Core Feature</div>
     <h2>Geospatial power map: see your organizing footprint</h2>
 
@@ -677,7 +745,7 @@
   </div>
 
   <!-- LEADERBOARDS -->
-  <div class="section">
+  <div class="section" id="leaderboards">
     <div class="section-label">Core Feature</div>
     <h2>Leaderboards: making organizing performance visible</h2>
 
@@ -725,7 +793,7 @@
   </div>
 
   <!-- VOICE NOTES -->
-  <div class="section">
+  <div class="section" id="voice-notes">
     <div class="section-label">Core Feature</div>
     <h2>Voice-first 1-on-1 notes</h2>
 
@@ -763,11 +831,11 @@
   </div>
 
   <!-- COMMITMENTS -->
-  <div class="section">
+  <div class="section" id="commitments">
     <div class="section-label">Core Feature</div>
     <h2>Commitment Tracking</h2>
 
-    <p class="epigraph">"90 percent of organizing is follow-up." — Fred Ross, <em>Axioms for Organizers</em></p>
+    <p class="epigraph">"90 percent of organizing is follow-up." — Fred Ross, <em style="font-style:italic;">Axioms for Organizers</em></p>
 
     <p>Every 1-on-1 note can (and should) include a structured commitment. Commitments surface in the organizer's follow-up queue with due dates. If someone committed to attend an event and did not show, Groundwork flags it automatically, on their contact record and in the organizer's queue. Over time, commitment history builds a real picture of reliability, depth of engagement, and readiness for leadership.</p>
 
@@ -811,7 +879,7 @@
   </div>
 
   <!-- EVENTS + QR -->
-  <div class="section">
+  <div class="section" id="events">
     <div class="section-label">Core Feature</div>
     <h2>Event check-in: QR self-check and iPad roster mode</h2>
 
@@ -853,7 +921,7 @@
   </div>
 
   <!-- WEEKLY REFLECTION -->
-  <div class="section">
+  <div class="section" id="reflection">
     <div class="section-label">Core Feature</div>
     <h2>Weekly organizer reflection: a practice, not a report</h2>
 
@@ -896,7 +964,7 @@
             </div>
           </div>
           <div class="coach-comment">
-            <strong>Supervisor/Coach — Joy Cushman</strong>
+            <strong>Joy Cushman (Coach)</strong>
             "You took a real risk with Maria and it paid off. What did you see in her that made you believe she was ready? And: what is James getting out of letting himself off the hook?"
           </div>
         </div>
@@ -907,7 +975,7 @@
   </div>
 
   <!-- COMPARISON -->
-  <div class="section">
+  <div class="section" id="comparison">
     <div class="section-label">Why Groundwork</div>
     <h2>What changes</h2>
 
@@ -935,7 +1003,7 @@
   </div>
 
   <!-- ROLLOUT -->
-  <div class="section">
+  <div class="section" id="rollout">
     <div class="section-label">Rollout</div>
     <h2>How organizations get access</h2>
 
@@ -955,11 +1023,11 @@
   </div>
 
   <!-- SECURITY -->
-  <div class="section">
+  <div class="section" id="security">
     <div class="section-label">Non-Negotiable</div>
     <h2>Security</h2>
 
-    <p>Organizing contact databases are high-value targets. They contain home addresses, political affiliations, participation records, and in some cases immigration status or other sensitive personal information. A breach harms real people and damages organizational trust for years. Security in Groundwork is not a feature. It is a foundation.</p>
+    <p>Organizing databases contain sensitive information about real people. Groundwork treats security accordingly.</p>
 
     <div class="callout indigo">
       <h4>Security architecture</h4>
@@ -983,4 +1051,8 @@
   <strong>GROUNDWORK</strong>
   March 2026 · Confidential Draft<br><br>
   To learn more or get in touch:<br>
-  Elizabeth McKenna · <a href="/cdn-cgi/l/email-protection#73161f1a09121116071b1e101833141e121a1f5d101c1e" style="color:rgba(255,255,255,0.6);"><span 
+  Elizabeth McKenna · <a href="mailto:elizabethmck@gmail.com" style="color:rgba(255,255,255,0.6);">elizabethmck@gmail.com</a>
+</div>
+
+</body>
+</html> 
