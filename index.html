@@ -640,7 +640,7 @@
         }
 
         .network-node.cascade {
-            background: #a78bfa;
+            background: #5371ff;
             box-shadow: 0 0 12px rgba(167,139,250,0.3);
         }
 
@@ -662,7 +662,7 @@
         }
 
         .network-edge.cascade {
-            background: #a78bfa;
+            background: #5371ff;
             opacity: 0.7;
             height: 2px;
         }
@@ -1612,14 +1612,14 @@
                             <td style="padding: 0.5rem; color: var(--text-secondary);">Maria S.</td>
                             <td style="padding: 0.5rem; text-align: center; color: var(--success);">12%</td>
                             <td style="padding: 0.5rem; text-align: center; color: var(--accent);">67%</td>
-                            <td style="padding: 0.5rem; text-align: center; color: #c4b5fd;">3</td>
+                            <td style="padding: 0.5rem; text-align: center; color: #5371ff;">3</td>
                         </tr>
                         <tr style="border-bottom: 1px solid var(--border);">
                             <td style="padding: 0.5rem; color: var(--text-primary);">House Meeting</td>
                             <td style="padding: 0.5rem; color: var(--text-secondary);">Angela T.</td>
                             <td style="padding: 0.5rem; text-align: center; color: var(--success);">8%</td>
                             <td style="padding: 0.5rem; text-align: center; color: var(--accent);">71%</td>
-                            <td style="padding: 0.5rem; text-align: center; color: #c4b5fd;">2</td>
+                            <td style="padding: 0.5rem; text-align: center; color: #5371ff;">2</td>
                         </tr>
                         <tr style="border-bottom: 1px solid var(--border);">
                             <td style="padding: 0.5rem; color: var(--text-primary);">Phone Bank</td>
@@ -1633,14 +1633,14 @@
                             <td style="padding: 0.5rem; color: var(--text-secondary);">David K.</td>
                             <td style="padding: 0.5rem; text-align: center; color: var(--warning);">28%</td>
                             <td style="padding: 0.5rem; text-align: center; color: var(--text-secondary);">34%</td>
-                            <td style="padding: 0.5rem; text-align: center; color: #c4b5fd;">1</td>
+                            <td style="padding: 0.5rem; text-align: center; color: #5371ff;">1</td>
                         </tr>
                         <tr>
                             <td style="padding: 0.5rem; color: var(--text-primary);">1:1 Blitz</td>
                             <td style="padding: 0.5rem; color: var(--text-secondary);">Maria S.</td>
                             <td style="padding: 0.5rem; text-align: center; color: var(--success);">5%</td>
                             <td style="padding: 0.5rem; text-align: center; color: var(--accent);">82%</td>
-                            <td style="padding: 0.5rem; text-align: center; color: #c4b5fd;">4</td>
+                            <td style="padding: 0.5rem; text-align: center; color: #5371ff;">4</td>
                         </tr>
                     </tbody>
                 </table>
@@ -1653,7 +1653,7 @@
                 <div class="network-viz" id="network"></div>
                 <div class="legend" style="margin-top: 1rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
                     <div class="legend-item">
-                        <div class="legend-dot" style="background: #a78bfa;"></div>
+                        <div class="legend-dot" style="background: #5371ff;"></div>
                         <span class="legend-text">Core Leader</span>
                     </div>
                     <div class="legend-item">
@@ -2161,7 +2161,7 @@
 
                 // Network nodes - Cascade recruiters (purple), Active vols (teal), Active base (amber)
                 const nodes = [
-                    // Cascade recruiters - purple (#a78bfa)
+                    // Cascade recruiters - purple (#5371ff)
                     { id: 1, x: 0.5, y: 0.32, size: 24, type: 'cascade', label: 'M' },
                     { id: 2, x: 0.22, y: 0.4, size: 20, type: 'cascade', label: 'A' },
                     { id: 3, x: 0.72, y: 0.38, size: 20, type: 'cascade', label: 'J' },
@@ -2215,7 +2215,7 @@
 
                 // Edges
                 const edges = [
-                    // Cascade-to-cascade (purple lines)
+                    // Cascade-to-cascade (blue lines)
                     { from: 1, to: 2, cascade: true },
                     { from: 1, to: 3, cascade: true },
                     { from: 1, to: 4, cascade: true },
