@@ -985,34 +985,54 @@
          ========================================== -->
     <section class="slide title-slide">
         <div class="content">
-            <div class="badge">
-                <svg class="icon" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-                Organizing Platform
-            </div>
-            <!-- Network-inspired logo -->
-            <svg class="groundwork-logo" viewBox="0 0 120 60" width="200" height="100" style="margin-bottom: 1.5rem;">
+            <!-- Snowflake network logo -->
+            <svg class="groundwork-logo" viewBox="0 0 100 100" width="120" height="120" style="margin-bottom: 2rem;">
                 <!-- Central node -->
-                <circle cx="60" cy="30" r="8" fill="#5371ff"/>
-                <!-- Surrounding nodes -->
-                <circle cx="30" cy="20" r="5" fill="#7c3aed"/>
-                <circle cx="90" cy="20" r="5" fill="#7c3aed"/>
-                <circle cx="25" cy="42" r="4" fill="#60a5fa"/>
-                <circle cx="95" cy="42" r="4" fill="#60a5fa"/>
-                <circle cx="60" cy="55" r="4" fill="#60a5fa"/>
-                <circle cx="15" cy="30" r="3" fill="#3f3f46"/>
-                <circle cx="105" cy="30" r="3" fill="#3f3f46"/>
-                <circle cx="45" cy="50" r="3" fill="#3f3f46"/>
-                <circle cx="75" cy="50" r="3" fill="#3f3f46"/>
-                <!-- Connecting lines -->
-                <line x1="60" y1="30" x2="30" y2="20" stroke="#5371ff" stroke-width="1.5" opacity="0.6"/>
-                <line x1="60" y1="30" x2="90" y2="20" stroke="#5371ff" stroke-width="1.5" opacity="0.6"/>
-                <line x1="60" y1="30" x2="25" y2="42" stroke="#5371ff" stroke-width="1" opacity="0.4"/>
-                <line x1="60" y1="30" x2="95" y2="42" stroke="#5371ff" stroke-width="1" opacity="0.4"/>
-                <line x1="60" y1="30" x2="60" y2="55" stroke="#5371ff" stroke-width="1" opacity="0.4"/>
-                <line x1="30" y1="20" x2="15" y2="30" stroke="#7c3aed" stroke-width="1" opacity="0.3"/>
-                <line x1="90" y1="20" x2="105" y2="30" stroke="#7c3aed" stroke-width="1" opacity="0.3"/>
-                <line x1="25" y1="42" x2="45" y2="50" stroke="#60a5fa" stroke-width="1" opacity="0.3"/>
-                <line x1="95" y1="42" x2="75" y2="50" stroke="#60a5fa" stroke-width="1" opacity="0.3"/>
+                <circle cx="50" cy="50" r="6" fill="#5371ff"/>
+                <!-- 6 team leader nodes (inner ring) -->
+                <circle cx="50" cy="25" r="4" fill="#5371ff"/>
+                <circle cx="71.65" cy="37.5" r="4" fill="#5371ff"/>
+                <circle cx="71.65" cy="62.5" r="4" fill="#5371ff"/>
+                <circle cx="50" cy="75" r="4" fill="#5371ff"/>
+                <circle cx="28.35" cy="62.5" r="4" fill="#5371ff"/>
+                <circle cx="28.35" cy="37.5" r="4" fill="#5371ff"/>
+                <!-- Spokes to team leaders -->
+                <line x1="50" y1="50" x2="50" y2="25" stroke="#5371ff" stroke-width="1.5"/>
+                <line x1="50" y1="50" x2="71.65" y2="37.5" stroke="#5371ff" stroke-width="1.5"/>
+                <line x1="50" y1="50" x2="71.65" y2="62.5" stroke="#5371ff" stroke-width="1.5"/>
+                <line x1="50" y1="50" x2="50" y2="75" stroke="#5371ff" stroke-width="1.5"/>
+                <line x1="50" y1="50" x2="28.35" y2="62.5" stroke="#5371ff" stroke-width="1.5"/>
+                <line x1="50" y1="50" x2="28.35" y2="37.5" stroke="#5371ff" stroke-width="1.5"/>
+                <!-- Outer nodes (team members) - 2 per team leader -->
+                <circle cx="50" cy="10" r="2.5" fill="#5371ff" opacity="0.6"/>
+                <circle cx="40" cy="15" r="2.5" fill="#5371ff" opacity="0.6"/>
+                <circle cx="60" cy="15" r="2.5" fill="#5371ff" opacity="0.6"/>
+                <circle cx="85" cy="30" r="2.5" fill="#5371ff" opacity="0.6"/>
+                <circle cx="82" cy="45" r="2.5" fill="#5371ff" opacity="0.6"/>
+                <circle cx="85" cy="70" r="2.5" fill="#5371ff" opacity="0.6"/>
+                <circle cx="82" cy="55" r="2.5" fill="#5371ff" opacity="0.6"/>
+                <circle cx="50" cy="90" r="2.5" fill="#5371ff" opacity="0.6"/>
+                <circle cx="40" cy="85" r="2.5" fill="#5371ff" opacity="0.6"/>
+                <circle cx="60" cy="85" r="2.5" fill="#5371ff" opacity="0.6"/>
+                <circle cx="15" cy="70" r="2.5" fill="#5371ff" opacity="0.6"/>
+                <circle cx="18" cy="55" r="2.5" fill="#5371ff" opacity="0.6"/>
+                <circle cx="15" cy="30" r="2.5" fill="#5371ff" opacity="0.6"/>
+                <circle cx="18" cy="45" r="2.5" fill="#5371ff" opacity="0.6"/>
+                <!-- Outer spokes -->
+                <line x1="50" y1="25" x2="50" y2="10" stroke="#5371ff" stroke-width="1" opacity="0.5"/>
+                <line x1="50" y1="25" x2="40" y2="15" stroke="#5371ff" stroke-width="1" opacity="0.5"/>
+                <line x1="50" y1="25" x2="60" y2="15" stroke="#5371ff" stroke-width="1" opacity="0.5"/>
+                <line x1="71.65" y1="37.5" x2="85" y2="30" stroke="#5371ff" stroke-width="1" opacity="0.5"/>
+                <line x1="71.65" y1="37.5" x2="82" y2="45" stroke="#5371ff" stroke-width="1" opacity="0.5"/>
+                <line x1="71.65" y1="62.5" x2="85" y2="70" stroke="#5371ff" stroke-width="1" opacity="0.5"/>
+                <line x1="71.65" y1="62.5" x2="82" y2="55" stroke="#5371ff" stroke-width="1" opacity="0.5"/>
+                <line x1="50" y1="75" x2="50" y2="90" stroke="#5371ff" stroke-width="1" opacity="0.5"/>
+                <line x1="50" y1="75" x2="40" y2="85" stroke="#5371ff" stroke-width="1" opacity="0.5"/>
+                <line x1="50" y1="75" x2="60" y2="85" stroke="#5371ff" stroke-width="1" opacity="0.5"/>
+                <line x1="28.35" y1="62.5" x2="15" y2="70" stroke="#5371ff" stroke-width="1" opacity="0.5"/>
+                <line x1="28.35" y1="62.5" x2="18" y2="55" stroke="#5371ff" stroke-width="1" opacity="0.5"/>
+                <line x1="28.35" y1="37.5" x2="15" y2="30" stroke="#5371ff" stroke-width="1" opacity="0.5"/>
+                <line x1="28.35" y1="37.5" x2="18" y2="45" stroke="#5371ff" stroke-width="1" opacity="0.5"/>
             </svg>
             <h1>Groundwork</h1>
             <p class="tagline">Organizing technology built by organizers, owned by organizers. Open source. Self-hosted. Your data, your rules.</p>
