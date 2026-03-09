@@ -1,0 +1,1511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Groundwork — Organizing Technology Platform</title>
+    <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap">
+    <style>
+        /* ===========================================
+           JAPANESE-INSPIRED COLOR PALETTE
+           Based on #5371ff (ruri-iro / lapis blue)
+           =========================================== */
+        :root {
+            /* Primary - Ruri blue */
+            --ruri: #5371ff;
+            --ruri-glow: rgba(83, 113, 255, 0.25);
+            --ruri-dim: #4361ee;
+            --ruri-light: rgba(83, 113, 255, 0.1);
+
+            /* Accent - Kincha gold */
+            --kincha: #c9a962;
+            --kincha-soft: rgba(201, 169, 98, 0.15);
+
+            /* Warm accent - Beni (crimson) */
+            --beni: #cb4b4b;
+            --beni-soft: rgba(203, 75, 75, 0.15);
+
+            /* Background - Sumi ink */
+            --sumi: #0d0d14;
+            --sumi-light: #14141f;
+            --sumi-card: #1a1a28;
+
+            /* Text - Shironeri silk */
+            --shironeri: #f5f3ee;
+            --shironeri-muted: rgba(245, 243, 238, 0.6);
+            --shironeri-dim: rgba(245, 243, 238, 0.35);
+
+            /* Success - Matcha */
+            --matcha: #7eb77f;
+
+            /* Typography scale */
+            --title-size: clamp(2.5rem, 7vw, 5rem);
+            --h2-size: clamp(1.4rem, 3.5vw, 2.25rem);
+            --h3-size: clamp(1rem, 1.8vw, 1.25rem);
+            --body-size: clamp(0.85rem, 1.3vw, 1rem);
+            --mono-size: clamp(0.7rem, 1.1vw, 0.85rem);
+            --small-size: clamp(0.65rem, 0.9vw, 0.75rem);
+            --slide-padding: clamp(2rem, 5vw, 4rem);
+            --content-gap: clamp(1rem, 2vw, 1.5rem);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+            height: 100%;
+        }
+
+        body {
+            font-family: 'Satoshi', sans-serif;
+            background: var(--sumi);
+            color: var(--shironeri);
+            height: 100%;
+            overflow-x: hidden;
+        }
+
+        /* Subtle grid texture */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(83, 113, 255, 0.015) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(83, 113, 255, 0.015) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .slide {
+            width: 100vw;
+            height: 100vh;
+            height: 100dvh;
+            padding: var(--slide-padding);
+            scroll-snap-align: start;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* ===========================================
+           COMMON ELEMENTS
+           =========================================== */
+        .section-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: var(--small-size);
+            color: var(--ruri);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.75rem;
+        }
+
+        .terminal-header {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: var(--h2-size);
+            font-weight: 600;
+            margin-bottom: clamp(1.5rem, 3vw, 2rem);
+            text-align: center;
+        }
+
+        .terminal-header::before {
+            content: '$ ';
+            color: var(--shironeri-dim);
+        }
+
+        .card-grid {
+            display: grid;
+            gap: var(--content-gap);
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        .card {
+            background: var(--sumi-card);
+            border: 1px solid rgba(83, 113, 255, 0.12);
+            border-radius: 12px;
+            padding: clamp(1.25rem, 2.5vw, 1.75rem);
+            position: relative;
+        }
+
+        .card-accent {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+        }
+
+        /* ===========================================
+           SLIDE 1: TITLE
+           =========================================== */
+        .title-slide .hero-card {
+            background: var(--ruri);
+            border-radius: 20px;
+            padding: clamp(2.5rem, 5vw, 4rem);
+            max-width: 800px;
+            width: 100%;
+            position: relative;
+            box-shadow:
+                0 0 80px var(--ruri-glow),
+                0 25px 50px rgba(0,0,0,0.4);
+        }
+
+        .title-slide .hero-card::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: 21px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent 50%);
+            z-index: -1;
+        }
+
+        .title-slide .prompt {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: var(--mono-size);
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 1.25rem;
+        }
+
+        .title-slide .prompt .path {
+            color: var(--kincha);
+        }
+
+        .title-slide .cursor {
+            display: inline-block;
+            width: 8px;
+            height: 1.1em;
+            background: var(--shironeri);
+            animation: blink 1s step-end infinite;
+            vertical-align: text-bottom;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        .title-slide h1 {
+            font-family: 'Clash Display', sans-serif;
+            font-size: var(--title-size);
+            font-weight: 600;
+            line-height: 1.05;
+            margin-bottom: 1rem;
+        }
+
+        .title-slide .subtitle {
+            font-size: clamp(1rem, 1.8vw, 1.15rem);
+            color: rgba(255,255,255,0.85);
+            line-height: 1.5;
+            max-width: 550px;
+            margin-bottom: 1.5rem;
+        }
+
+        .title-slide .features-inline {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: var(--small-size);
+            color: rgba(255,255,255,0.6);
+            line-height: 1.8;
+        }
+
+        .title-slide .accent-dot {
+            position: absolute;
+            bottom: -16px;
+            right: -16px;
+            width: 56px;
+            height: 56px;
+            background: var(--kincha);
+            border-radius: 50%;
+            box-shadow: 0 0 30px rgba(201, 169, 98, 0.4);
+        }
+
+        /* ===========================================
+           SLIDE 2: THE PROBLEM
+           =========================================== */
+        .problem-slide .terminal-header {
+            color: var(--beni);
+        }
+
+        .problem-slide .card-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        @media (max-width: 800px) {
+            .problem-slide .card-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .problem-slide .card .card-accent {
+            background: linear-gradient(90deg, var(--beni), transparent);
+        }
+
+        .problem-slide .card .label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: var(--small-size);
+            color: var(--shironeri-dim);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.75rem;
+        }
+
+        .problem-slide .card h3 {
+            font-family: 'Clash Display', sans-serif;
+            font-size: var(--h3-size);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .problem-slide .card p {
+            font-size: var(--body-size);
+            color: var(--shironeri-muted);
+            line-height: 1.5;
+        }
+
+        .problem-slide .card .status {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: var(--mono-size);
+            color: var(--beni);
+            margin-top: 0.75rem;
+        }
+
+        /* ===========================================
+           SLIDE 3: WHY BUILD NOW
+           =========================================== */
+        .why-slide .terminal-header {
+            color: var(--matcha);
+        }
+
+        .why-slide .card-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media (max-width: 700px) {
+            .why-slide .card-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .why-slide .card .card-accent {
+            background: linear-gradient(90deg, var(--matcha), transparent);
+        }
+
+        .why-slide .card .icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .why-slide .card h3 {
+            font-family: 'Clash Display', sans-serif;
+            font-size: var(--h3-size);
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+        }
+
+        .why-slide .card p {
+            font-size: var(--body-size);
+            color: var(--shironeri-muted);
+            line-height: 1.5;
+        }
+
+        .why-slide .card .highlight {
+            color: var(--matcha);
+            font-weight: 600;
+        }
+
+        /* ===========================================
+           SLIDE 4: VOICE-FIRST NOTES
+           =========================================== */
+        .voice-slide .content-wrapper {
+            display: flex;
+            gap: clamp(2rem, 4vw, 3rem);
+            max-width: 950px;
+            align-items: center;
+        }
+
+        @media (max-width: 800px) {
+            .voice-slide .content-wrapper {
+                flex-direction: column;
+            }
+        }
+
+        .voice-slide .text-content {
+            flex: 1;
+        }
+
+        .voice-slide h2 {
+            font-family: 'Clash Display', sans-serif;
+            font-size: var(--h2-size);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .voice-slide .tagline {
+            font-size: var(--body-size);
+            color: var(--shironeri-muted);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .voice-slide .steps {
+            list-style: none;
+        }
+
+        .voice-slide .steps li {
+            font-size: var(--body-size);
+            color: var(--shironeri);
+            margin-bottom: 0.75rem;
+            padding-left: 1.75rem;
+            position: relative;
+            line-height: 1.5;
+        }
+
+        .voice-slide .steps li::before {
+            content: attr(data-step);
+            position: absolute;
+            left: 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: var(--small-size);
+            color: var(--ruri);
+            font-weight: 600;
+        }
+
+        .voice-slide .phone-mock {
+            width: clamp(180px, 25vw, 240px);
+            background: var(--sumi-card);
+            border: 1px solid rgba(83, 113, 255, 0.2);
+            border-radius: 24px;
+            padding: 1rem;
+            flex-shrink: 0;
+        }
+
+        .voice-slide .phone-mock .screen {
+            background: var(--sumi-light);
+            border-radius: 16px;
+            padding: 1rem;
+            min-height: 200px;
+        }
+
+        .voice-slide .phone-mock .mic-btn {
+            width: 48px;
+            height: 48px;
+            background: var(--ruri);
+            border-radius: 50%;
+            margin: 1rem auto 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            box-shadow: 0 0 20px var(--ruri-glow);
+        }
+
+        .voice-slide .phone-mock .transcript {
+            font-size: var(--small-size);
+            color: var(--shironeri-muted);
+            line-height: 1.5;
+            font-style: italic;
+        }
+
+        /* ===========================================
+           SLIDE 5: COMMITMENT TRACKING
+           =========================================== */
+        .commit-slide h2 {
+            font-family: 'Clash Display', sans-serif;
+            font-size: var(--h2-size);
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            text-align: center;
+        }
+
+        .commit-slide .tagline {
+            font-size: var(--body-size);
+            color: var(--shironeri-muted);
+            margin-bottom: clamp(1.5rem, 3vw, 2rem);
+            text-align: center;
+            max-width: 500px;
+        }
+
+        .commit-slide .flow {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 900px;
+        }
+
+        .commit-slide .flow-step {
+            background: var(--sumi-card);
+            border: 1px solid rgba(83, 113, 255, 0.15);
+            border-radius: 12px;
+            padding: clamp(1rem, 2vw, 1.5rem);
+            text-align: center;
+            min-width: 140px;
+        }
+
+        .commit-slide .flow-step .icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .commit-slide .flow-step h3 {
+            font-size: var(--body-size);
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .commit-slide .flow-step p {
+            font-size: var(--small-size);
+            color: var(--shironeri-muted);
+        }
+
+        .commit-slide .flow-arrow {
+            color: var(--ruri);
+            font-size: 1.25rem;
+        }
+
+        @media (max-width: 700px) {
+            .commit-slide .flow-arrow {
+                transform: rotate(90deg);
+            }
+        }
+
+        .commit-slide .statuses {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: clamp(1.5rem, 3vw, 2rem);
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .commit-slide .status-badge {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: var(--small-size);
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+        }
+
+        .commit-slide .status-badge.kept {
+            background: rgba(126, 183, 127, 0.15);
+            color: var(--matcha);
+        }
+
+        .commit-slide .status-badge.broken {
+            background: var(--beni-soft);
+            color: var(--beni);
+        }
+
+        .commit-slide .status-badge.pending {
+            background: var(--kincha-soft);
+            color: var(--kincha);
+        }
+
+        /* ===========================================
+           SLIDE 6: EVENT CHECK-IN
+           =========================================== */
+        .checkin-slide h2 {
+            font-family: 'Clash Display', sans-serif;
+            font-size: var(--h2-size);
+            font-weight: 600;
+            margin-bottom: clamp(1.5rem, 3vw, 2rem);
+            text-align: center;
+        }
+
+        .checkin-slide .methods {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--content-gap);
+            max-width: 850px;
+            width: 100%;
+        }
+
+        @media (max-width: 700px) {
+            .checkin-slide .methods {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .checkin-slide .method {
+            background: var(--sumi-card);
+            border: 1px solid rgba(83, 113, 255, 0.15);
+            border-radius: 16px;
+            padding: clamp(1.25rem, 2.5vw, 2rem);
+            text-align: center;
+        }
+
+        .checkin-slide .method .icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .checkin-slide .method h3 {
+            font-family: 'Clash Display', sans-serif;
+            font-size: var(--h3-size);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .checkin-slide .method p {
+            font-size: var(--body-size);
+            color: var(--shironeri-muted);
+            line-height: 1.5;
+        }
+
+        .checkin-slide .method .tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: var(--small-size);
+            color: var(--ruri);
+            margin-top: 0.75rem;
+            display: inline-block;
+        }
+
+        /* ===========================================
+           SLIDE 7: WEEKLY REFLECTION
+           =========================================== */
+        .reflect-slide .content-wrapper {
+            display: flex;
+            gap: clamp(2rem, 4vw, 3rem);
+            max-width: 950px;
+            align-items: flex-start;
+        }
+
+        @media (max-width: 800px) {
+            .reflect-slide .content-wrapper {
+                flex-direction: column;
+            }
+        }
+
+        .reflect-slide .text-content {
+            flex: 1;
+        }
+
+        .reflect-slide h2 {
+            font-family: 'Clash Display', sans-serif;
+            font-size: var(--h2-size);
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .reflect-slide .tagline {
+            font-size: var(--body-size);
+            color: var(--shironeri-muted);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .reflect-slide .fields {
+            list-style: none;
+        }
+
+        .reflect-slide .fields li {
+            font-size: var(--body-size);
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        .reflect-slide .fields li .field-name {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: var(--small-size);
+            color: var(--kincha);
+            min-width: 100px;
+        }
+
+        .reflect-slide .fields li .field-desc {
+            color: var(--shironeri-muted);
+        }
+
+        .reflect-slide .memo-preview {
+            width: clamp(280px, 40%, 350px);
+            background: var(--sumi-card);
+            border: 1px solid rgba(83, 113, 255, 0.15);
+            border-radius: 12px;
+            padding: 1.25rem;
+            flex-shrink: 0;
+        }
+
+        .reflect-slide .memo-preview .header {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: var(--small-size);
+            color: var(--shironeri-dim);
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .reflect-slide .memo-preview .headline {
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            font-size: var(--body-size);
+        }
+
+        .reflect-slide .memo-preview .content {
+            font-size: var(--small-size);
+            color: var(--shironeri-muted);
+            line-height: 1.6;
+        }
+
+        .reflect-slide .memo-preview .coach-note {
+            margin-top: 1rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: var(--small-size);
+            color: var(--matcha);
+        }
+
+        /* ===========================================
+           SLIDE 8: FEATURES GRID
+           =========================================== */
+        .features-slide h2 {
+            font-family: 'Clash Display', sans-serif;
+            font-size: var(--h2-size);
+            font-weight: 600;
+            margin-bottom: clamp(1.5rem, 3vw, 2rem);
+            text-align: center;
+        }
+
+        .features-slide .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: clamp(0.6rem, 1.2vw, 1rem);
+            max-width: 900px;
+            width: 100%;
+        }
+
+        @media (max-width: 800px) {
+            .features-slide .feature-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .features-slide .feature-item {
+            background: linear-gradient(135deg, var(--ruri) 0%, var(--ruri-dim) 100%);
+            border-radius: 12px;
+            padding: clamp(0.9rem, 1.8vw, 1.25rem);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .features-slide .feature-item::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent 50%);
+            pointer-events: none;
+        }
+
+        .features-slide .feature-item .icon {
+            font-size: clamp(1.25rem, 2vw, 1.5rem);
+            margin-bottom: 0.4rem;
+        }
+
+        .features-slide .feature-item h3 {
+            font-size: clamp(0.75rem, 1vw, 0.9rem);
+            font-weight: 600;
+        }
+
+        /* ===========================================
+           SLIDE 9: TECH STACK
+           =========================================== */
+        .stack-slide .terminal-header {
+            color: var(--ruri);
+        }
+
+        .stack-slide .stack-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--content-gap);
+            max-width: 800px;
+            width: 100%;
+        }
+
+        @media (max-width: 700px) {
+            .stack-slide .stack-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .stack-slide .stack-item {
+            background: var(--sumi-card);
+            border: 1px solid rgba(83, 113, 255, 0.15);
+            border-radius: 12px;
+            padding: clamp(1rem, 2vw, 1.5rem);
+            text-align: center;
+        }
+
+        .stack-slide .stack-item .layer {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: var(--small-size);
+            color: var(--shironeri-dim);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+
+        .stack-slide .stack-item .tech {
+            font-family: 'Clash Display', sans-serif;
+            font-size: var(--h3-size);
+            font-weight: 600;
+            color: var(--ruri);
+        }
+
+        /* ===========================================
+           SLIDE 10: COMPARISON
+           =========================================== */
+        .compare-slide .terminal-header {
+            color: var(--ruri);
+        }
+
+        .compare-slide .compare-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--content-gap);
+            max-width: 800px;
+            width: 100%;
+        }
+
+        @media (max-width: 600px) {
+            .compare-slide .compare-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .compare-slide .compare-box {
+            background: var(--sumi-card);
+            border: 1px solid rgba(83, 113, 255, 0.15);
+            border-radius: 12px;
+            padding: clamp(1.25rem, 2.5vw, 1.75rem);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: var(--mono-size);
+        }
+
+        .compare-slide .compare-box.old {
+            border-color: rgba(203, 75, 75, 0.3);
+        }
+
+        .compare-slide .compare-box.new {
+            border-color: rgba(83, 113, 255, 0.3);
+        }
+
+        .compare-slide .compare-box .header {
+            font-size: var(--small-size);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .compare-slide .compare-box.old .header {
+            color: var(--beni);
+        }
+
+        .compare-slide .compare-box.new .header {
+            color: var(--ruri);
+        }
+
+        .compare-slide .compare-line {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .compare-slide .compare-line .label {
+            color: var(--shironeri-dim);
+        }
+
+        .compare-slide .compare-box.old .compare-line .value {
+            color: var(--beni);
+        }
+
+        .compare-slide .compare-box.new .compare-line .value {
+            color: var(--matcha);
+        }
+
+        /* ===========================================
+           SLIDE 11: TIMELINE
+           =========================================== */
+        .timeline-slide h2 {
+            font-family: 'Clash Display', sans-serif;
+            font-size: var(--h2-size);
+            font-weight: 600;
+            margin-bottom: clamp(1.5rem, 3vw, 2rem);
+            text-align: center;
+        }
+
+        .timeline-slide .phases {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--content-gap);
+            max-width: 900px;
+            width: 100%;
+        }
+
+        @media (max-width: 800px) {
+            .timeline-slide .phases {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .timeline-slide .phase {
+            background: var(--sumi-card);
+            border: 1px solid rgba(83, 113, 255, 0.15);
+            border-radius: 12px;
+            padding: clamp(1rem, 2vw, 1.5rem);
+            position: relative;
+        }
+
+        .timeline-slide .phase::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--ruri);
+            border-radius: 12px 12px 0 0;
+        }
+
+        .timeline-slide .phase .num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: var(--small-size);
+            color: var(--ruri);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-slide .phase h3 {
+            font-family: 'Clash Display', sans-serif;
+            font-size: var(--body-size);
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+        }
+
+        .timeline-slide .phase p {
+            font-size: var(--small-size);
+            color: var(--shironeri-muted);
+            line-height: 1.5;
+        }
+
+        /* ===========================================
+           SLIDE 12: CTA
+           =========================================== */
+        .cta-slide .cta-card {
+            background: linear-gradient(135deg, var(--ruri) 0%, var(--ruri-dim) 100%);
+            border-radius: 20px;
+            padding: clamp(2.5rem, 5vw, 4rem);
+            max-width: 700px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            box-shadow:
+                0 0 80px var(--ruri-glow),
+                0 25px 50px rgba(0,0,0,0.4);
+        }
+
+        .cta-slide .cta-card::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: 21px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent 50%);
+            z-index: -1;
+        }
+
+        .cta-slide h2 {
+            font-family: 'Clash Display', sans-serif;
+            font-size: var(--h2-size);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .cta-slide p {
+            font-size: var(--body-size);
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .cta-slide .next-steps {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: var(--mono-size);
+            color: rgba(255,255,255,0.7);
+            text-align: left;
+            display: inline-block;
+        }
+
+        .cta-slide .next-steps div {
+            margin-bottom: 0.4rem;
+        }
+
+        .cta-slide .next-steps span {
+            color: var(--kincha);
+        }
+
+        /* ===========================================
+           NAV DOTS
+           =========================================== */
+        .nav-dots {
+            position: fixed;
+            right: clamp(1rem, 2vw, 2rem);
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 100;
+        }
+
+        .nav-dot {
+            width: 6px;
+            height: 6px;
+            border: 1px solid var(--ruri);
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-dot.active {
+            background: var(--ruri);
+            box-shadow: 0 0 10px var(--ruri-glow);
+            transform: scale(1.4);
+        }
+
+        .slide-counter {
+            position: fixed;
+            bottom: clamp(1rem, 2vw, 2rem);
+            left: clamp(1rem, 2vw, 2rem);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: var(--small-size);
+            color: var(--shironeri-dim);
+            z-index: 100;
+        }
+
+        .branding {
+            position: fixed;
+            bottom: clamp(1rem, 2vw, 2rem);
+            right: clamp(1rem, 2vw, 2rem);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: var(--small-size);
+            color: var(--shironeri-dim);
+            z-index: 100;
+        }
+
+        @media (max-height: 600px) {
+            .nav-dots { display: none; }
+        }
+
+        /* Keyboard hint */
+        .keyboard-hint {
+            position: fixed;
+            bottom: clamp(1rem, 2vw, 2rem);
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.6rem;
+            color: var(--shironeri-dim);
+            z-index: 100;
+            opacity: 0.5;
+        }
+
+        @media (max-height: 650px) {
+            .keyboard-hint { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav-dots"></nav>
+    <div class="slide-counter"><span class="current">01</span> / <span class="total">12</span></div>
+    <div class="branding">civic power lab</div>
+    <div class="keyboard-hint">↑↓ or scroll to navigate</div>
+
+    <!-- ==========================================
+         SLIDE 1: TITLE
+         ========================================== -->
+    <section class="slide title-slide">
+        <div class="hero-card">
+            <div class="prompt">
+                <span class="path">~/civic-power</span> $ npx create-groundwork<span class="cursor"></span>
+            </div>
+            <h1>Groundwork</h1>
+            <p class="subtitle">Organizing technology built by organizers, owned by organizers. Open source. Self-hosted. Your data, your rules.</p>
+            <div class="features-inline">
+                Voice Notes · Commitment Tracking · QR Check-in · Weekly Reflection<br>
+                Coaching Dashboard · Email Sync · Multi-Tenancy · POLIS Integration
+            </div>
+            <div class="accent-dot"></div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         SLIDE 2: THE PROBLEM
+         ========================================== -->
+    <section class="slide problem-slide">
+        <h2 class="terminal-header">everyaction --status</h2>
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-accent"></div>
+                <div class="label">owner</div>
+                <h3>Private Equity Ownership</h3>
+                <p>EveryAction acquired by Apax Partners ($80B fund). Your data serves investor returns.</p>
+                <div class="status">⚠ vendor-controlled</div>
+            </div>
+            <div class="card">
+                <div class="card-accent"></div>
+                <div class="label">pricing</div>
+                <h3>Rising Costs</h3>
+                <p>Significant increases post-acquisition. Reduced support for small organizations.</p>
+                <div class="status">⚠ $500-2,000/mo</div>
+            </div>
+            <div class="card">
+                <div class="card-accent"></div>
+                <div class="label">features</div>
+                <h3>Locked Out</h3>
+                <p>Can't build what they won't build. Features oriented toward large institutions, not grassroots practice.</p>
+                <div class="status">⚠ no custom dev</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         SLIDE 3: WHY BUILD NOW
+         ========================================== -->
+    <section class="slide why-slide">
+        <h2 class="terminal-header">groundwork --why-now</h2>
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-accent"></div>
+                <div class="icon">⚡</div>
+                <h3>Modern Tooling</h3>
+                <p>Supabase, Next.js, Vercel, Claude Code make production-quality builds feasible in <span class="highlight">weeks, not years</span>.</p>
+            </div>
+            <div class="card">
+                <div class="card-accent"></div>
+                <div class="icon">💰</div>
+                <h3>$50–200/month</h3>
+                <p>Infrastructure cost. Engineering cost with AI-assisted development: <span class="highlight">primarily your time</span>.</p>
+            </div>
+            <div class="card">
+                <div class="card-accent"></div>
+                <div class="icon">🔐</div>
+                <h3>100% Data Ownership</h3>
+                <p>Your Postgres database. Export anytime. <span class="highlight">No vendor lock-in.</span></p>
+            </div>
+            <div class="card">
+                <div class="card-accent"></div>
+                <div class="icon">🔬</div>
+                <h3>Research Integration</h3>
+                <p>Direct connection to POLIS/COMP. <span class="highlight">No export loops or vendor permission</span> required.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         SLIDE 4: VOICE-FIRST NOTES
+         ========================================== -->
+    <section class="slide voice-slide">
+        <div class="section-label">Core Feature</div>
+        <div class="content-wrapper">
+            <div class="text-content">
+                <h2>Voice-First 1-on-1 Notes</h2>
+                <p class="tagline">Design target: 30 seconds from tap to saved. Fast enough to log between conversations, on a phone, in the field.</p>
+                <ul class="steps">
+                    <li data-step="01">Tap mic, speak your note naturally</li>
+                    <li data-step="02">AI transcribes using Web Speech API + Whisper fallback</li>
+                    <li data-step="03">AI extracts: commitment made, issues raised, follow-up needed, relationship depth</li>
+                    <li data-step="04">One-tap confirm or edit each field</li>
+                    <li data-step="05">Full transcript always preserved</li>
+                </ul>
+            </div>
+            <div class="phone-mock">
+                <div class="screen">
+                    <div class="transcript">"Met with Maria today, she's fired up about the school board race. She committed to bringing five people to the training next week..."</div>
+                </div>
+                <div class="mic-btn">🎤</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         SLIDE 5: COMMITMENT TRACKING
+         ========================================== -->
+    <section class="slide commit-slide">
+        <div class="section-label">Core Feature</div>
+        <h2>Commitment Tracking</h2>
+        <p class="tagline">The distinction between organizing and mobilizing lives here. Commitments must be tracked to completion—not noted and forgotten.</p>
+        <div class="flow">
+            <div class="flow-step">
+                <div class="icon">🤝</div>
+                <h3>Commit</h3>
+                <p>"I'll bring 5 people"</p>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">
+                <div class="icon">📋</div>
+                <h3>Track</h3>
+                <p>Surfaces in follow-up queue</p>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">
+                <div class="icon">🔔</div>
+                <h3>Auto-Flag</h3>
+                <p>Broken commitments flagged</p>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">
+                <div class="icon">📊</div>
+                <h3>Report</h3>
+                <p>Completion rates by team</p>
+            </div>
+        </div>
+        <div class="statuses">
+            <span class="status-badge kept">✓ kept</span>
+            <span class="status-badge broken">✗ broken</span>
+            <span class="status-badge pending">◐ pending</span>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         SLIDE 6: EVENT CHECK-IN
+         ========================================== -->
+    <section class="slide checkin-slide">
+        <div class="section-label">Core Feature</div>
+        <h2>Event Check-In: QR + iPad</h2>
+        <div class="methods">
+            <div class="method">
+                <div class="icon">📱</div>
+                <h3>QR Self Check-In</h3>
+                <p>Attendees scan a code at the door. Name pre-filled if registered, one tap confirms.</p>
+                <div class="tag">walk-ins auto-create contacts</div>
+            </div>
+            <div class="method">
+                <div class="icon">📋</div>
+                <h3>iPad Roster Mode</h3>
+                <p>Large-text, one-tap check-in per person. Works offline, syncs when connected.</p>
+                <div class="tag">clinic/DMV model</div>
+            </div>
+            <div class="method">
+                <div class="icon">👤</div>
+                <h3>Staff Override</h3>
+                <p>Organizer can check in any registered person manually from any device.</p>
+                <div class="tag">broken commits auto-flagged</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         SLIDE 7: WEEKLY REFLECTION
+         ========================================== -->
+    <section class="slide reflect-slide">
+        <div class="section-label">Core Feature</div>
+        <div class="content-wrapper">
+            <div class="text-content">
+                <h2>Weekly Organizer Reflection</h2>
+                <p class="tagline">Not a reporting burden—a practice that makes organizers better. Pre-populate everything possible, leave space only for what requires human reflection.</p>
+                <ul class="fields">
+                    <li><span class="field-name">headline:</span> <span class="field-desc">What was your headline this week?</span></li>
+                    <li><span class="field-name">risks_taken:</span> <span class="field-desc">What risks did you take?</span></li>
+                    <li><span class="field-name">risks_avoided:</span> <span class="field-desc">What risks did you back away from?</span></li>
+                    <li><span class="field-name">learning:</span> <span class="field-desc">What are you learning?</span></li>
+                    <li><span class="field-name">invest_in:</span> <span class="field-desc">One person to invest in next week</span></li>
+                    <li><span class="field-name">energy:</span> <span class="field-desc">1–5 🔋→⚡</span></li>
+                </ul>
+            </div>
+            <div class="memo-preview">
+                <div class="header">weekly_reflection // 2026-03-07</div>
+                <div class="headline">"Breakthrough with the Northside team"</div>
+                <div class="content">
+                    Took a risk pushing Maria to co-lead the house meeting—she crushed it. Still avoiding the hard conversation with James about his follow-through...
+                </div>
+                <div class="coach-note">💬 Coach: "Push on James this week. You've got this."</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         SLIDE 8: ALL FEATURES
+         ========================================== -->
+    <section class="slide features-slide">
+        <h2>Full Feature Set</h2>
+        <div class="feature-grid">
+            <div class="feature-item">
+                <div class="icon">👥</div>
+                <h3>Contact Database</h3>
+            </div>
+            <div class="feature-item">
+                <div class="icon">🎤</div>
+                <h3>Voice Notes</h3>
+            </div>
+            <div class="feature-item">
+                <div class="icon">🤝</div>
+                <h3>Commitments</h3>
+            </div>
+            <div class="feature-item">
+                <div class="icon">📅</div>
+                <h3>Events</h3>
+            </div>
+            <div class="feature-item">
+                <div class="icon">📱</div>
+                <h3>QR Check-In</h3>
+            </div>
+            <div class="feature-item">
+                <div class="icon">📝</div>
+                <h3>Reflections</h3>
+            </div>
+            <div class="feature-item">
+                <div class="icon">👔</div>
+                <h3>Coaching</h3>
+            </div>
+            <div class="feature-item">
+                <div class="icon">📧</div>
+                <h3>Email Sync</h3>
+            </div>
+            <div class="feature-item">
+                <div class="icon">🗺️</div>
+                <h3>Map Views</h3>
+            </div>
+            <div class="feature-item">
+                <div class="icon">📊</div>
+                <h3>Analytics</h3>
+            </div>
+            <div class="feature-item">
+                <div class="icon">🔗</div>
+                <h3>Relationships</h3>
+            </div>
+            <div class="feature-item">
+                <div class="icon">🏢</div>
+                <h3>Multi-Tenant</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         SLIDE 9: TECH STACK
+         ========================================== -->
+    <section class="slide stack-slide">
+        <h2 class="terminal-header">cat stack.yml</h2>
+        <div class="stack-grid">
+            <div class="stack-item">
+                <div class="layer">frontend</div>
+                <div class="tech">Next.js 14</div>
+            </div>
+            <div class="stack-item">
+                <div class="layer">ui</div>
+                <div class="tech">shadcn/ui</div>
+            </div>
+            <div class="stack-item">
+                <div class="layer">database</div>
+                <div class="tech">Supabase</div>
+            </div>
+            <div class="stack-item">
+                <div class="layer">auth</div>
+                <div class="tech">Supabase Auth</div>
+            </div>
+            <div class="stack-item">
+                <div class="layer">email</div>
+                <div class="tech">Resend</div>
+            </div>
+            <div class="stack-item">
+                <div class="layer">hosting</div>
+                <div class="tech">Vercel</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         SLIDE 10: COMPARISON
+         ========================================== -->
+    <section class="slide compare-slide">
+        <h2 class="terminal-header">everyaction groundwork</h2>
+        <div class="compare-container">
+            <div class="compare-box old">
+                <div class="header">— everyaction</div>
+                <div class="compare-line">
+                    <span class="label">monthly_cost:</span>
+                    <span class="value">$500–2,000+</span>
+                </div>
+                <div class="compare-line">
+                    <span class="label">data_ownership:</span>
+                    <span class="value">vendor</span>
+                </div>
+                <div class="compare-line">
+                    <span class="label">voice_notes:</span>
+                    <span class="value">no</span>
+                </div>
+                <div class="compare-line">
+                    <span class="label">commitment_track:</span>
+                    <span class="value">no</span>
+                </div>
+                <div class="compare-line">
+                    <span class="label">weekly_reflection:</span>
+                    <span class="value">no</span>
+                </div>
+                <div class="compare-line">
+                    <span class="label">research_export:</span>
+                    <span class="value">limited</span>
+                </div>
+            </div>
+            <div class="compare-box new">
+                <div class="header">+ groundwork</div>
+                <div class="compare-line">
+                    <span class="label">monthly_cost:</span>
+                    <span class="value">$50–200</span>
+                </div>
+                <div class="compare-line">
+                    <span class="label">data_ownership:</span>
+                    <span class="value">100% yours</span>
+                </div>
+                <div class="compare-line">
+                    <span class="label">voice_notes:</span>
+                    <span class="value">yes + AI extract</span>
+                </div>
+                <div class="compare-line">
+                    <span class="label">commitment_track:</span>
+                    <span class="value">yes + auto-flag</span>
+                </div>
+                <div class="compare-line">
+                    <span class="label">weekly_reflection:</span>
+                    <span class="value">yes + coaching</span>
+                </div>
+                <div class="compare-line">
+                    <span class="label">research_export:</span>
+                    <span class="value">direct postgres</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         SLIDE 11: TIMELINE
+         ========================================== -->
+    <section class="slide timeline-slide">
+        <h2>Phased Build Plan</h2>
+        <div class="phases">
+            <div class="phase">
+                <div class="num">Phase 0–1</div>
+                <h3>Foundation</h3>
+                <p>Repo setup, Supabase schema, auth, contact database with filters and CSV import</p>
+            </div>
+            <div class="phase">
+                <div class="num">Phase 2–3</div>
+                <h3>Core Organizing</h3>
+                <p>Voice notes with AI extraction, commitment tracking, events with QR check-in</p>
+            </div>
+            <div class="phase">
+                <div class="num">Phase 4–5</div>
+                <h3>Coaching & Comms</h3>
+                <p>Weekly reflections, coaching dashboard, Constant Contact sync, email campaigns</p>
+            </div>
+            <div class="phase">
+                <div class="num">Phase 6–8</div>
+                <h3>Scale & Research</h3>
+                <p>Multi-tenancy, analytics, POLIS integration, security audit, mobile optimization</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         SLIDE 12: CTA
+         ========================================== -->
+    <section class="slide cta-slide">
+        <div class="cta-card">
+            <h2>Let's Build This</h2>
+            <p>The organizing world has built extraordinary political power on rented infrastructure for 20 years. Groundwork is a chance to change that.</p>
+            <div class="next-steps">
+                <div><span>01</span> Create Supabase project</div>
+                <div><span>02</span> Clone starter repo</div>
+                <div><span>03</span> Deploy to Vercel</div>
+                <div><span>04</span> Start building with Claude Code</div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        /* ===========================================
+           SLIDE PRESENTATION CONTROLLER
+           =========================================== */
+        class SlidePresentation {
+            constructor() {
+                this.slides = document.querySelectorAll('.slide');
+                this.navContainer = document.querySelector('.nav-dots');
+                this.counter = document.querySelector('.slide-counter');
+                this.currentIndex = 0;
+
+                this.createNavDots();
+                this.setupObserver();
+                this.setupKeyboard();
+            }
+
+            createNavDots() {
+                this.slides.forEach((_, i) => {
+                    const dot = document.createElement('div');
+                    dot.className = 'nav-dot' + (i === 0 ? ' active' : '');
+                    dot.addEventListener('click', () => {
+                        this.slides[i].scrollIntoView({ behavior: 'smooth' });
+                    });
+                    this.navContainer.appendChild(dot);
+                });
+                this.dots = document.querySelectorAll('.nav-dot');
+            }
+
+            setupObserver() {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const index = Array.from(this.slides).indexOf(entry.target);
+                            this.currentIndex = index;
+                            this.updateNav(index);
+                        }
+                    });
+                }, { threshold: 0.5 });
+
+                this.slides.forEach(slide => observer.observe(slide));
+            }
+
+            updateNav(index) {
+                this.dots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === index);
+                });
+                if (this.counter) {
+                    this.counter.querySelector('.current').textContent =
+                        String(index + 1).padStart(2, '0');
+                    this.counter.querySelector('.total').textContent =
+                        String(this.slides.length).padStart(2, '0');
+                }
+            }
+
+            setupKeyboard() {
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === ' ') {
+                        e.preventDefault();
+                        this.goToSlide(this.currentIndex + 1);
+                    } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+                        e.preventDefault();
+                        this.goToSlide(this.currentIndex - 1);
+                    }
+                });
+            }
+
+            goToSlide(index) {
+                if (index >= 0 && index < this.slides.length) {
+                    this.slides[index].scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        }
+
+        // Initialize
+        new SlidePresentation();
+    </script>
+</body>
+</html>
