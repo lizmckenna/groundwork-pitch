@@ -4,50 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Groundwork — Organizing Technology Platform</title>
-    <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700&display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
     <style>
         /* ===========================================
-           JAPANESE-INSPIRED COLOR PALETTE
-           Based on #5371ff (ruri-iro / lapis blue)
+           LINEAR-INSPIRED DESIGN SYSTEM
+           Dark, minimal, sophisticated, subtle gradients
            =========================================== */
         :root {
-            /* Primary - Ruri blue */
-            --ruri: #5371ff;
-            --ruri-glow: rgba(83, 113, 255, 0.25);
-            --ruri-dim: #4361ee;
-            --ruri-light: rgba(83, 113, 255, 0.1);
+            /* Backgrounds */
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-elevated: #18181b;
+            --bg-hover: #1f1f23;
 
-            /* Accent - Kincha gold */
-            --kincha: #c9a962;
-            --kincha-soft: rgba(201, 169, 98, 0.15);
+            /* Primary accent - based on #5371ff */
+            --accent: #5371ff;
+            --accent-muted: #4361ee;
+            --accent-glow: rgba(83, 113, 255, 0.15);
+            --accent-subtle: rgba(83, 113, 255, 0.08);
 
-            /* Warm accent - Beni (crimson) */
-            --beni: #cb4b4b;
-            --beni-soft: rgba(203, 75, 75, 0.15);
+            /* Text */
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-tertiary: #71717a;
 
-            /* Background - Sumi ink */
-            --sumi: #0d0d14;
-            --sumi-light: #14141f;
-            --sumi-card: #1a1a28;
+            /* Semantic */
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --error: #ef4444;
 
-            /* Text - Shironeri silk */
-            --shironeri: #f5f3ee;
-            --shironeri-muted: rgba(245, 243, 238, 0.6);
-            --shironeri-dim: rgba(245, 243, 238, 0.35);
+            /* Borders */
+            --border: rgba(255, 255, 255, 0.06);
+            --border-hover: rgba(255, 255, 255, 0.1);
 
-            /* Success - Matcha */
-            --matcha: #7eb77f;
-
-            /* Typography scale */
-            --title-size: clamp(2.5rem, 7vw, 5rem);
-            --h2-size: clamp(1.4rem, 3.5vw, 2.25rem);
-            --h3-size: clamp(1rem, 1.8vw, 1.25rem);
-            --body-size: clamp(0.85rem, 1.3vw, 1rem);
-            --mono-size: clamp(0.7rem, 1.1vw, 0.85rem);
-            --small-size: clamp(0.65rem, 0.9vw, 0.75rem);
-            --slide-padding: clamp(2rem, 5vw, 4rem);
-            --content-gap: clamp(1rem, 2vw, 1.5rem);
+            /* Typography - larger for core features */
+            --title-size: clamp(2.5rem, 6vw, 4.5rem);
+            --h2-size: clamp(1.75rem, 4vw, 2.75rem);
+            --h3-size: clamp(1.1rem, 2vw, 1.4rem);
+            --body-size: clamp(0.95rem, 1.4vw, 1.1rem);
+            --small-size: clamp(0.8rem, 1vw, 0.9rem);
+            --slide-padding: clamp(2rem, 5vw, 5rem);
         }
 
         * {
@@ -63,24 +59,12 @@
         }
 
         body {
-            font-family: 'Satoshi', sans-serif;
-            background: var(--sumi);
-            color: var(--shironeri);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
             height: 100%;
             overflow-x: hidden;
-        }
-
-        /* Subtle grid texture */
-        body::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background-image:
-                linear-gradient(rgba(83, 113, 255, 0.015) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(83, 113, 255, 0.015) 1px, transparent 1px);
-            background-size: 50px 50px;
-            pointer-events: none;
-            z-index: 0;
+            -webkit-font-smoothing: antialiased;
         }
 
         .slide {
@@ -97,169 +81,179 @@
             overflow: hidden;
         }
 
-        /* ===========================================
-           COMMON ELEMENTS
-           =========================================== */
-        .section-label {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: var(--small-size);
-            color: var(--ruri);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 0.75rem;
-        }
-
-        .terminal-header {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: var(--h2-size);
-            font-weight: 600;
-            margin-bottom: clamp(1.5rem, 3vw, 2rem);
-            text-align: center;
-        }
-
-        .terminal-header::before {
-            content: '$ ';
-            color: var(--shironeri-dim);
-        }
-
-        .card-grid {
-            display: grid;
-            gap: var(--content-gap);
-            max-width: 1000px;
-            width: 100%;
-        }
-
-        .card {
-            background: var(--sumi-card);
-            border: 1px solid rgba(83, 113, 255, 0.12);
-            border-radius: 12px;
-            padding: clamp(1.25rem, 2.5vw, 1.75rem);
-            position: relative;
-        }
-
-        .card-accent {
+        /* Subtle gradient overlay */
+        .slide::before {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 2px;
+            height: 40%;
+            background: radial-gradient(ellipse at 50% 0%, var(--accent-subtle) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        /* ===========================================
+           ABSTRACT ICONS (SVG-based, clean lines)
+           =========================================== */
+        .icon {
+            width: 24px;
+            height: 24px;
+            stroke: currentColor;
+            stroke-width: 1.5;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .icon-lg {
+            width: 32px;
+            height: 32px;
+        }
+
+        .icon-xl {
+            width: 40px;
+            height: 40px;
+        }
+
+        /* ===========================================
+           COMMON ELEMENTS
+           =========================================== */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 0.8rem;
+            background: var(--accent-subtle);
+            border: 1px solid rgba(83, 113, 255, 0.2);
+            border-radius: 100px;
+            font-size: var(--small-size);
+            font-weight: 500;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: clamp(2rem, 4vw, 3rem);
+        }
+
+        .section-header h2 {
+            font-size: var(--h2-size);
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.75rem;
+        }
+
+        .section-header p {
+            font-size: var(--body-size);
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: clamp(1.5rem, 3vw, 2rem);
+            transition: border-color 0.2s ease, background 0.2s ease;
+        }
+
+        .card:hover {
+            border-color: var(--border-hover);
+            background: var(--bg-elevated);
         }
 
         /* ===========================================
            SLIDE 1: TITLE
            =========================================== */
-        .title-slide .hero-card {
-            background: var(--ruri);
-            border-radius: 20px;
-            padding: clamp(2.5rem, 5vw, 4rem);
+        .title-slide .content {
+            text-align: center;
             max-width: 800px;
-            width: 100%;
-            position: relative;
-            box-shadow:
-                0 0 80px var(--ruri-glow),
-                0 25px 50px rgba(0,0,0,0.4);
-        }
-
-        .title-slide .hero-card::before {
-            content: '';
-            position: absolute;
-            inset: -1px;
-            border-radius: 21px;
-            background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent 50%);
-            z-index: -1;
-        }
-
-        .title-slide .prompt {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: var(--mono-size);
-            color: rgba(255,255,255,0.5);
-            margin-bottom: 1.25rem;
-        }
-
-        .title-slide .prompt .path {
-            color: var(--kincha);
-        }
-
-        .title-slide .cursor {
-            display: inline-block;
-            width: 8px;
-            height: 1.1em;
-            background: var(--shironeri);
-            animation: blink 1s step-end infinite;
-            vertical-align: text-bottom;
-        }
-
-        @keyframes blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
         }
 
         .title-slide h1 {
-            font-family: 'Clash Display', sans-serif;
             font-size: var(--title-size);
-            font-weight: 600;
-            line-height: 1.05;
-            margin-bottom: 1rem;
-        }
-
-        .title-slide .subtitle {
-            font-size: clamp(1rem, 1.8vw, 1.15rem);
-            color: rgba(255,255,255,0.85);
-            line-height: 1.5;
-            max-width: 550px;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
             margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        .title-slide .features-inline {
-            font-family: 'JetBrains Mono', monospace;
+        .title-slide .tagline {
+            font-size: clamp(1.1rem, 2vw, 1.35rem);
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 2.5rem;
+        }
+
+        .title-slide .features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            justify-content: center;
+        }
+
+        .title-slide .feature-tag {
+            padding: 0.5rem 1rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
             font-size: var(--small-size);
-            color: rgba(255,255,255,0.6);
-            line-height: 1.8;
-        }
-
-        .title-slide .accent-dot {
-            position: absolute;
-            bottom: -16px;
-            right: -16px;
-            width: 56px;
-            height: 56px;
-            background: var(--kincha);
-            border-radius: 50%;
-            box-shadow: 0 0 30px rgba(201, 169, 98, 0.4);
+            color: var(--text-secondary);
         }
 
         /* ===========================================
            SLIDE 2: THE PROBLEM
            =========================================== */
-        .problem-slide .terminal-header {
-            color: var(--beni);
-        }
-
-        .problem-slide .card-grid {
+        .problem-slide .cards {
+            display: grid;
             grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            max-width: 1000px;
+            width: 100%;
         }
 
         @media (max-width: 800px) {
-            .problem-slide .card-grid {
+            .problem-slide .cards {
                 grid-template-columns: 1fr;
             }
         }
 
-        .problem-slide .card .card-accent {
-            background: linear-gradient(90deg, var(--beni), transparent);
+        .problem-slide .card {
+            position: relative;
+            overflow: hidden;
         }
 
-        .problem-slide .card .label {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: var(--small-size);
-            color: var(--shironeri-dim);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 0.75rem;
+        .problem-slide .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--error), transparent);
+        }
+
+        .problem-slide .card .icon-wrapper {
+            width: 48px;
+            height: 48px;
+            background: rgba(239, 68, 68, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.25rem;
+            color: var(--error);
         }
 
         .problem-slide .card h3 {
-            font-family: 'Clash Display', sans-serif;
             font-size: var(--h3-size);
             font-weight: 600;
             margin-bottom: 0.5rem;
@@ -267,694 +261,669 @@
 
         .problem-slide .card p {
             font-size: var(--body-size);
-            color: var(--shironeri-muted);
-            line-height: 1.5;
-        }
-
-        .problem-slide .card .status {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: var(--mono-size);
-            color: var(--beni);
-            margin-top: 0.75rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
         }
 
         /* ===========================================
            SLIDE 3: WHY BUILD NOW
            =========================================== */
-        .why-slide .terminal-header {
-            color: var(--matcha);
-        }
-
-        .why-slide .card-grid {
+        .why-slide .cards {
+            display: grid;
             grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            max-width: 900px;
+            width: 100%;
         }
 
         @media (max-width: 700px) {
-            .why-slide .card-grid {
+            .why-slide .cards {
                 grid-template-columns: 1fr;
             }
         }
 
-        .why-slide .card .card-accent {
-            background: linear-gradient(90deg, var(--matcha), transparent);
+        .why-slide .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--success), transparent);
         }
 
-        .why-slide .card .icon {
-            font-size: 1.5rem;
-            margin-bottom: 0.75rem;
+        .why-slide .card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .why-slide .card .icon-wrapper {
+            width: 48px;
+            height: 48px;
+            background: rgba(34, 197, 94, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.25rem;
+            color: var(--success);
         }
 
         .why-slide .card h3 {
-            font-family: 'Clash Display', sans-serif;
             font-size: var(--h3-size);
             font-weight: 600;
-            margin-bottom: 0.4rem;
+            margin-bottom: 0.5rem;
         }
 
         .why-slide .card p {
             font-size: var(--body-size);
-            color: var(--shironeri-muted);
-            line-height: 1.5;
-        }
-
-        .why-slide .card .highlight {
-            color: var(--matcha);
-            font-weight: 600;
-        }
-
-        /* ===========================================
-           SLIDE 4: VOICE-FIRST NOTES
-           =========================================== */
-        .voice-slide .content-wrapper {
-            display: flex;
-            gap: clamp(2rem, 4vw, 3rem);
-            max-width: 950px;
-            align-items: center;
-        }
-
-        @media (max-width: 800px) {
-            .voice-slide .content-wrapper {
-                flex-direction: column;
-            }
-        }
-
-        .voice-slide .text-content {
-            flex: 1;
-        }
-
-        .voice-slide h2 {
-            font-family: 'Clash Display', sans-serif;
-            font-size: var(--h2-size);
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .voice-slide .tagline {
-            font-size: var(--body-size);
-            color: var(--shironeri-muted);
-            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
             line-height: 1.6;
         }
 
-        .voice-slide .steps {
-            list-style: none;
-        }
-
-        .voice-slide .steps li {
-            font-size: var(--body-size);
-            color: var(--shironeri);
-            margin-bottom: 0.75rem;
-            padding-left: 1.75rem;
-            position: relative;
-            line-height: 1.5;
-        }
-
-        .voice-slide .steps li::before {
-            content: attr(data-step);
-            position: absolute;
-            left: 0;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: var(--small-size);
-            color: var(--ruri);
+        .why-slide .card .highlight {
+            color: var(--success);
             font-weight: 600;
-        }
-
-        .voice-slide .phone-mock {
-            width: clamp(180px, 25vw, 240px);
-            background: var(--sumi-card);
-            border: 1px solid rgba(83, 113, 255, 0.2);
-            border-radius: 24px;
-            padding: 1rem;
-            flex-shrink: 0;
-        }
-
-        .voice-slide .phone-mock .screen {
-            background: var(--sumi-light);
-            border-radius: 16px;
-            padding: 1rem;
-            min-height: 200px;
-        }
-
-        .voice-slide .phone-mock .mic-btn {
-            width: 48px;
-            height: 48px;
-            background: var(--ruri);
-            border-radius: 50%;
-            margin: 1rem auto 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.25rem;
-            box-shadow: 0 0 20px var(--ruri-glow);
-        }
-
-        .voice-slide .phone-mock .transcript {
-            font-size: var(--small-size);
-            color: var(--shironeri-muted);
-            line-height: 1.5;
-            font-style: italic;
         }
 
         /* ===========================================
-           SLIDE 5: COMMITMENT TRACKING
+           SLIDE 4: VOICE-FIRST NOTES (Core Feature)
            =========================================== */
-        .commit-slide h2 {
-            font-family: 'Clash Display', sans-serif;
-            font-size: var(--h2-size);
-            font-weight: 600;
-            margin-bottom: 0.75rem;
-            text-align: center;
+        .feature-slide .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: clamp(3rem, 6vw, 5rem);
+            max-width: 1100px;
+            align-items: center;
         }
 
-        .commit-slide .tagline {
+        @media (max-width: 900px) {
+            .feature-slide .content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .feature-slide .text-content h2 {
+            font-size: var(--h2-size);
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .feature-slide .text-content .lead {
             font-size: var(--body-size);
-            color: var(--shironeri-muted);
-            margin-bottom: clamp(1.5rem, 3vw, 2rem);
-            text-align: center;
-            max-width: 500px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+
+        .feature-slide .steps {
+            list-style: none;
+        }
+
+        .feature-slide .steps li {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.25rem;
+            font-size: var(--body-size);
+            line-height: 1.5;
+        }
+
+        .feature-slide .step-num {
+            width: 28px;
+            height: 28px;
+            background: var(--accent-subtle);
+            border: 1px solid rgba(83, 113, 255, 0.2);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .feature-slide .visual {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .feature-slide .phone-frame {
+            width: 220px;
+            margin: 0 auto;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-hover);
+            border-radius: 24px;
+            padding: 1rem;
+        }
+
+        .feature-slide .phone-screen {
+            background: var(--bg-primary);
+            border-radius: 16px;
+            padding: 1.25rem;
+            min-height: 180px;
+        }
+
+        .feature-slide .transcript {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        .feature-slide .mic-button {
+            width: 56px;
+            height: 56px;
+            background: var(--accent);
+            border-radius: 50%;
+            margin: 1.5rem auto 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 30px var(--accent-glow);
+        }
+
+        .feature-slide .mic-button svg {
+            width: 24px;
+            height: 24px;
+            stroke: white;
+        }
+
+        /* ===========================================
+           SLIDE 5: COMMITMENT TRACKING (Core Feature)
+           =========================================== */
+        .commit-slide .flow-container {
+            max-width: 1000px;
+            width: 100%;
         }
 
         .commit-slide .flow {
             display: flex;
-            gap: 1rem;
             align-items: center;
-            flex-wrap: wrap;
             justify-content: center;
-            max-width: 900px;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
         }
 
         .commit-slide .flow-step {
-            background: var(--sumi-card);
-            border: 1px solid rgba(83, 113, 255, 0.15);
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
             border-radius: 12px;
-            padding: clamp(1rem, 2vw, 1.5rem);
+            padding: 1.5rem 2rem;
             text-align: center;
-            min-width: 140px;
+            min-width: 160px;
         }
 
-        .commit-slide .flow-step .icon {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
+        .commit-slide .flow-step .icon-wrapper {
+            width: 48px;
+            height: 48px;
+            background: var(--accent-subtle);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            color: var(--accent);
         }
 
         .commit-slide .flow-step h3 {
-            font-size: var(--body-size);
+            font-size: var(--h3-size);
             font-weight: 600;
             margin-bottom: 0.25rem;
         }
 
         .commit-slide .flow-step p {
             font-size: var(--small-size);
-            color: var(--shironeri-muted);
+            color: var(--text-tertiary);
         }
 
         .commit-slide .flow-arrow {
-            color: var(--ruri);
-            font-size: 1.25rem;
-        }
-
-        @media (max-width: 700px) {
-            .commit-slide .flow-arrow {
-                transform: rotate(90deg);
-            }
+            color: var(--text-tertiary);
         }
 
         .commit-slide .statuses {
             display: flex;
-            gap: 1.5rem;
-            margin-top: clamp(1.5rem, 3vw, 2rem);
-            flex-wrap: wrap;
             justify-content: center;
+            gap: 1.5rem;
         }
 
-        .commit-slide .status-badge {
-            font-family: 'JetBrains Mono', monospace;
+        .commit-slide .status {
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
             font-size: var(--small-size);
-            padding: 0.4rem 0.8rem;
-            border-radius: 6px;
+            font-weight: 500;
         }
 
-        .commit-slide .status-badge.kept {
-            background: rgba(126, 183, 127, 0.15);
-            color: var(--matcha);
+        .commit-slide .status.kept {
+            background: rgba(34, 197, 94, 0.1);
+            color: var(--success);
+            border: 1px solid rgba(34, 197, 94, 0.2);
         }
 
-        .commit-slide .status-badge.broken {
-            background: var(--beni-soft);
-            color: var(--beni);
+        .commit-slide .status.broken {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--error);
+            border: 1px solid rgba(239, 68, 68, 0.2);
         }
 
-        .commit-slide .status-badge.pending {
-            background: var(--kincha-soft);
-            color: var(--kincha);
+        .commit-slide .status.pending {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--warning);
+            border: 1px solid rgba(245, 158, 11, 0.2);
         }
 
         /* ===========================================
-           SLIDE 6: EVENT CHECK-IN
+           SLIDE 6: ANALYTICS EXAMPLE (Charts)
            =========================================== */
-        .checkin-slide h2 {
-            font-family: 'Clash Display', sans-serif;
-            font-size: var(--h2-size);
-            font-weight: 600;
-            margin-bottom: clamp(1.5rem, 3vw, 2rem);
-            text-align: center;
-        }
-
-        .checkin-slide .methods {
+        .analytics-slide .charts-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: var(--content-gap);
-            max-width: 850px;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 2rem;
+            max-width: 1100px;
             width: 100%;
         }
 
-        @media (max-width: 700px) {
-            .checkin-slide .methods {
+        @media (max-width: 900px) {
+            .analytics-slide .charts-grid {
                 grid-template-columns: 1fr;
             }
         }
 
-        .checkin-slide .method {
-            background: var(--sumi-card);
-            border: 1px solid rgba(83, 113, 255, 0.15);
+        .analytics-slide .chart-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
             border-radius: 16px;
-            padding: clamp(1.25rem, 2.5vw, 2rem);
-            text-align: center;
+            padding: 1.5rem;
         }
 
-        .checkin-slide .method .icon {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .checkin-slide .method h3 {
-            font-family: 'Clash Display', sans-serif;
-            font-size: var(--h3-size);
+        .analytics-slide .chart-card h3 {
+            font-size: 1rem;
             font-weight: 600;
             margin-bottom: 0.5rem;
         }
 
-        .checkin-slide .method p {
-            font-size: var(--body-size);
-            color: var(--shironeri-muted);
-            line-height: 1.5;
-        }
-
-        .checkin-slide .method .tag {
-            font-family: 'JetBrains Mono', monospace;
+        .analytics-slide .chart-card .subtitle {
             font-size: var(--small-size);
-            color: var(--ruri);
-            margin-top: 0.75rem;
-            display: inline-block;
+            color: var(--text-tertiary);
+            margin-bottom: 1.5rem;
         }
 
-        /* ===========================================
-           SLIDE 7: WEEKLY REFLECTION
-           =========================================== */
-        .reflect-slide .content-wrapper {
+        /* Donut chart */
+        .donut-container {
             display: flex;
-            gap: clamp(2rem, 4vw, 3rem);
-            max-width: 950px;
-            align-items: flex-start;
+            align-items: center;
+            gap: 2rem;
         }
 
-        @media (max-width: 800px) {
-            .reflect-slide .content-wrapper {
-                flex-direction: column;
-            }
+        .donut-wrapper {
+            position: relative;
+            width: 140px;
+            height: 140px;
+            flex-shrink: 0;
         }
 
-        .reflect-slide .text-content {
+        .donut-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .donut-value {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--text-tertiary);
+        }
+
+        .donut-label {
+            font-size: 0.7rem;
+            color: var(--text-tertiary);
+        }
+
+        .legend {
             flex: 1;
         }
 
-        .reflect-slide h2 {
-            font-family: 'Clash Display', sans-serif;
-            font-size: var(--h2-size);
-            font-weight: 600;
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
             margin-bottom: 0.75rem;
         }
 
-        .reflect-slide .tagline {
-            font-size: var(--body-size);
-            color: var(--shironeri-muted);
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 3px;
+        }
+
+        .legend-text {
+            flex: 1;
+            font-size: var(--small-size);
+            color: var(--text-secondary);
+        }
+
+        .legend-value {
+            font-size: var(--small-size);
+            font-weight: 600;
+        }
+
+        /* Network visualization */
+        .network-viz {
+            height: 280px;
+            position: relative;
+        }
+
+        .network-node {
+            position: absolute;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.6rem;
+            font-weight: 600;
+            color: white;
+            transition: transform 0.2s ease;
+        }
+
+        .network-node:hover {
+            transform: scale(1.15);
+        }
+
+        .network-node.power {
+            background: var(--accent);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        .network-node.strong {
+            background: #7c3aed;
+        }
+
+        .network-node.recruiter {
+            background: #60a5fa;
+        }
+
+        .network-node.participant {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            color: var(--text-tertiary);
+        }
+
+        .network-edge {
+            position: absolute;
+            height: 1px;
+            background: var(--border);
+            transform-origin: left center;
+        }
+
+        .network-edge.cascade {
+            background: var(--accent);
+            opacity: 0.4;
+        }
+
+        /* ===========================================
+           SLIDE 7: WEEKLY REFLECTION (Core Feature)
+           =========================================== */
+        .reflect-slide .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: clamp(3rem, 6vw, 5rem);
+            max-width: 1100px;
+            align-items: center;
+        }
+
+        @media (max-width: 900px) {
+            .reflect-slide .content-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         .reflect-slide .fields {
             list-style: none;
+            margin-top: 1.5rem;
         }
 
-        .reflect-slide .fields li {
-            font-size: var(--body-size);
-            margin-bottom: 0.6rem;
+        .reflect-slide .field-row {
             display: flex;
-            align-items: flex-start;
-            gap: 0.5rem;
-        }
-
-        .reflect-slide .fields li .field-name {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: var(--small-size);
-            color: var(--kincha);
-            min-width: 100px;
-        }
-
-        .reflect-slide .fields li .field-desc {
-            color: var(--shironeri-muted);
-        }
-
-        .reflect-slide .memo-preview {
-            width: clamp(280px, 40%, 350px);
-            background: var(--sumi-card);
-            border: 1px solid rgba(83, 113, 255, 0.15);
-            border-radius: 12px;
-            padding: 1.25rem;
-            flex-shrink: 0;
-        }
-
-        .reflect-slide .memo-preview .header {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: var(--small-size);
-            color: var(--shironeri-dim);
-            margin-bottom: 1rem;
-            padding-bottom: 0.75rem;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .reflect-slide .memo-preview .headline {
-            font-weight: 600;
+            align-items: baseline;
+            gap: 1rem;
             margin-bottom: 0.75rem;
             font-size: var(--body-size);
         }
 
-        .reflect-slide .memo-preview .content {
-            font-size: var(--small-size);
-            color: var(--shironeri-muted);
-            line-height: 1.6;
+        .reflect-slide .field-name {
+            color: var(--accent);
+            font-weight: 500;
+            min-width: 120px;
         }
 
-        .reflect-slide .memo-preview .coach-note {
+        .reflect-slide .field-desc {
+            color: var(--text-secondary);
+        }
+
+        .reflect-slide .memo-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+        }
+
+        .reflect-slide .memo-header {
+            font-size: var(--small-size);
+            color: var(--text-tertiary);
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .reflect-slide .memo-headline {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .reflect-slide .memo-body {
+            font-size: var(--small-size);
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .reflect-slide .coach-note {
             margin-top: 1rem;
             padding-top: 0.75rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
+            border-top: 1px solid var(--border);
             font-size: var(--small-size);
-            color: var(--matcha);
+            color: var(--success);
         }
 
         /* ===========================================
            SLIDE 8: FEATURES GRID
            =========================================== */
-        .features-slide h2 {
-            font-family: 'Clash Display', sans-serif;
-            font-size: var(--h2-size);
-            font-weight: 600;
-            margin-bottom: clamp(1.5rem, 3vw, 2rem);
-            text-align: center;
-        }
-
-        .features-slide .feature-grid {
+        .features-grid-slide .grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: clamp(0.6rem, 1.2vw, 1rem);
+            gap: 1rem;
             max-width: 900px;
             width: 100%;
         }
 
         @media (max-width: 800px) {
-            .features-slide .feature-grid {
+            .features-grid-slide .grid {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
 
-        .features-slide .feature-item {
-            background: linear-gradient(135deg, var(--ruri) 0%, var(--ruri-dim) 100%);
+        .features-grid-slide .feature-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
             border-radius: 12px;
-            padding: clamp(0.9rem, 1.8vw, 1.25rem);
+            padding: 1.5rem;
             text-align: center;
-            position: relative;
-            overflow: hidden;
+            transition: all 0.2s ease;
         }
 
-        .features-slide .feature-item::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent 50%);
-            pointer-events: none;
+        .features-grid-slide .feature-card:hover {
+            border-color: var(--accent);
+            background: var(--bg-elevated);
         }
 
-        .features-slide .feature-item .icon {
-            font-size: clamp(1.25rem, 2vw, 1.5rem);
-            margin-bottom: 0.4rem;
+        .features-grid-slide .feature-card .icon-wrapper {
+            width: 48px;
+            height: 48px;
+            background: var(--accent-subtle);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            color: var(--accent);
         }
 
-        .features-slide .feature-item h3 {
-            font-size: clamp(0.75rem, 1vw, 0.9rem);
+        .features-grid-slide .feature-card h3 {
+            font-size: var(--h3-size);
             font-weight: 600;
         }
 
         /* ===========================================
-           SLIDE 9: TECH STACK
+           SLIDE 9: COMPARISON
            =========================================== */
-        .stack-slide .terminal-header {
-            color: var(--ruri);
-        }
-
-        .stack-slide .stack-grid {
+        .compare-slide .compare-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: var(--content-gap);
-            max-width: 800px;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            max-width: 900px;
             width: 100%;
         }
 
         @media (max-width: 700px) {
-            .stack-slide .stack-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        .stack-slide .stack-item {
-            background: var(--sumi-card);
-            border: 1px solid rgba(83, 113, 255, 0.15);
-            border-radius: 12px;
-            padding: clamp(1rem, 2vw, 1.5rem);
-            text-align: center;
-        }
-
-        .stack-slide .stack-item .layer {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: var(--small-size);
-            color: var(--shironeri-dim);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 0.5rem;
-        }
-
-        .stack-slide .stack-item .tech {
-            font-family: 'Clash Display', sans-serif;
-            font-size: var(--h3-size);
-            font-weight: 600;
-            color: var(--ruri);
-        }
-
-        /* ===========================================
-           SLIDE 10: COMPARISON
-           =========================================== */
-        .compare-slide .terminal-header {
-            color: var(--ruri);
-        }
-
-        .compare-slide .compare-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--content-gap);
-            max-width: 800px;
-            width: 100%;
-        }
-
-        @media (max-width: 600px) {
-            .compare-slide .compare-container {
+            .compare-slide .compare-grid {
                 grid-template-columns: 1fr;
             }
         }
 
-        .compare-slide .compare-box {
-            background: var(--sumi-card);
-            border: 1px solid rgba(83, 113, 255, 0.15);
-            border-radius: 12px;
-            padding: clamp(1.25rem, 2.5vw, 1.75rem);
-            font-family: 'JetBrains Mono', monospace;
-            font-size: var(--mono-size);
-        }
-
-        .compare-slide .compare-box.old {
-            border-color: rgba(203, 75, 75, 0.3);
-        }
-
-        .compare-slide .compare-box.new {
-            border-color: rgba(83, 113, 255, 0.3);
-        }
-
-        .compare-slide .compare-box .header {
-            font-size: var(--small-size);
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            margin-bottom: 1rem;
-            padding-bottom: 0.75rem;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .compare-slide .compare-box.old .header {
-            color: var(--beni);
-        }
-
-        .compare-slide .compare-box.new .header {
-            color: var(--ruri);
-        }
-
-        .compare-slide .compare-line {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.5rem;
-            line-height: 1.4;
-        }
-
-        .compare-slide .compare-line .label {
-            color: var(--shironeri-dim);
-        }
-
-        .compare-slide .compare-box.old .compare-line .value {
-            color: var(--beni);
-        }
-
-        .compare-slide .compare-box.new .compare-line .value {
-            color: var(--matcha);
-        }
-
-        /* ===========================================
-           SLIDE 11: TIMELINE
-           =========================================== */
-        .timeline-slide h2 {
-            font-family: 'Clash Display', sans-serif;
-            font-size: var(--h2-size);
-            font-weight: 600;
-            margin-bottom: clamp(1.5rem, 3vw, 2rem);
-            text-align: center;
-        }
-
-        .timeline-slide .phases {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: var(--content-gap);
-            max-width: 900px;
-            width: 100%;
-        }
-
-        @media (max-width: 800px) {
-            .timeline-slide .phases {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        .timeline-slide .phase {
-            background: var(--sumi-card);
-            border: 1px solid rgba(83, 113, 255, 0.15);
-            border-radius: 12px;
-            padding: clamp(1rem, 2vw, 1.5rem);
+        .compare-slide .compare-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
             position: relative;
+            overflow: hidden;
         }
 
-        .timeline-slide .phase::before {
+        .compare-slide .compare-card.old::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 3px;
-            background: var(--ruri);
-            border-radius: 12px 12px 0 0;
+            height: 2px;
+            background: var(--error);
         }
 
-        .timeline-slide .phase .num {
-            font-family: 'JetBrains Mono', monospace;
+        .compare-slide .compare-card.new::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--accent);
+        }
+
+        .compare-slide .compare-header {
             font-size: var(--small-size);
-            color: var(--ruri);
-            margin-bottom: 0.5rem;
-        }
-
-        .timeline-slide .phase h3 {
-            font-family: 'Clash Display', sans-serif;
-            font-size: var(--body-size);
             font-weight: 600;
-            margin-bottom: 0.4rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
         }
 
-        .timeline-slide .phase p {
-            font-size: var(--small-size);
-            color: var(--shironeri-muted);
-            line-height: 1.5;
+        .compare-slide .compare-card.old .compare-header {
+            color: var(--error);
+        }
+
+        .compare-slide .compare-card.new .compare-header {
+            color: var(--accent);
+        }
+
+        .compare-slide .compare-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.75rem;
+            font-size: var(--body-size);
+        }
+
+        .compare-slide .compare-label {
+            color: var(--text-tertiary);
+        }
+
+        .compare-slide .compare-card.old .compare-value {
+            color: var(--error);
+        }
+
+        .compare-slide .compare-card.new .compare-value {
+            color: var(--success);
         }
 
         /* ===========================================
-           SLIDE 12: CTA
+           SLIDE 10: CTA
            =========================================== */
-        .cta-slide .cta-card {
-            background: linear-gradient(135deg, var(--ruri) 0%, var(--ruri-dim) 100%);
-            border-radius: 20px;
-            padding: clamp(2.5rem, 5vw, 4rem);
-            max-width: 700px;
-            width: 100%;
+        .cta-slide .cta-content {
             text-align: center;
-            position: relative;
-            box-shadow:
-                0 0 80px var(--ruri-glow),
-                0 25px 50px rgba(0,0,0,0.4);
-        }
-
-        .cta-slide .cta-card::before {
-            content: '';
-            position: absolute;
-            inset: -1px;
-            border-radius: 21px;
-            background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent 50%);
-            z-index: -1;
+            max-width: 700px;
         }
 
         .cta-slide h2 {
-            font-family: 'Clash Display', sans-serif;
             font-size: var(--h2-size);
             font-weight: 600;
+            letter-spacing: -0.02em;
             margin-bottom: 1rem;
         }
 
-        .cta-slide p {
+        .cta-slide .lead {
             font-size: var(--body-size);
-            color: rgba(255,255,255,0.85);
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
         }
 
-        .cta-slide .next-steps {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: var(--mono-size);
-            color: rgba(255,255,255,0.7);
-            text-align: left;
+        .cta-slide .steps-list {
             display: inline-block;
+            text-align: left;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
         }
 
-        .cta-slide .next-steps div {
-            margin-bottom: 0.4rem;
+        .cta-slide .steps-list .step {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+            font-size: var(--body-size);
         }
 
-        .cta-slide .next-steps span {
-            color: var(--kincha);
+        .cta-slide .steps-list .step:last-child {
+            margin-bottom: 0;
+        }
+
+        .cta-slide .steps-list .step-num {
+            color: var(--accent);
+            font-weight: 600;
         }
 
         /* ===========================================
-           NAV DOTS
+           NAVIGATION
            =========================================== */
         .nav-dots {
             position: fixed;
@@ -963,32 +932,32 @@
             transform: translateY(-50%);
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 8px;
             z-index: 100;
         }
 
         .nav-dot {
             width: 6px;
             height: 6px;
-            border: 1px solid var(--ruri);
-            background: transparent;
+            border-radius: 50%;
+            background: var(--text-tertiary);
+            opacity: 0.3;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
         }
 
         .nav-dot.active {
-            background: var(--ruri);
-            box-shadow: 0 0 10px var(--ruri-glow);
-            transform: scale(1.4);
+            background: var(--accent);
+            opacity: 1;
+            transform: scale(1.5);
         }
 
         .slide-counter {
             position: fixed;
             bottom: clamp(1rem, 2vw, 2rem);
             left: clamp(1rem, 2vw, 2rem);
-            font-family: 'JetBrains Mono', monospace;
-            font-size: var(--small-size);
-            color: var(--shironeri-dim);
+            font-size: 0.75rem;
+            color: var(--text-tertiary);
             z-index: 100;
         }
 
@@ -996,55 +965,40 @@
             position: fixed;
             bottom: clamp(1rem, 2vw, 2rem);
             right: clamp(1rem, 2vw, 2rem);
-            font-family: 'JetBrains Mono', monospace;
-            font-size: var(--small-size);
-            color: var(--shironeri-dim);
+            font-size: 0.75rem;
+            color: var(--text-tertiary);
             z-index: 100;
         }
 
         @media (max-height: 600px) {
             .nav-dots { display: none; }
         }
-
-        /* Keyboard hint */
-        .keyboard-hint {
-            position: fixed;
-            bottom: clamp(1rem, 2vw, 2rem);
-            left: 50%;
-            transform: translateX(-50%);
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.6rem;
-            color: var(--shironeri-dim);
-            z-index: 100;
-            opacity: 0.5;
-        }
-
-        @media (max-height: 650px) {
-            .keyboard-hint { display: none; }
-        }
     </style>
 </head>
 <body>
     <nav class="nav-dots"></nav>
-    <div class="slide-counter"><span class="current">01</span> / <span class="total">12</span></div>
-    <div class="branding">civic power lab</div>
-    <div class="keyboard-hint">↑↓ or scroll to navigate</div>
+    <div class="slide-counter"><span class="current">01</span> / <span class="total">10</span></div>
+    <div class="branding">Civic Power Lab</div>
 
     <!-- ==========================================
          SLIDE 1: TITLE
          ========================================== -->
     <section class="slide title-slide">
-        <div class="hero-card">
-            <div class="prompt">
-                <span class="path">~/civic-power</span> $ npx create-groundwork<span class="cursor"></span>
+        <div class="content">
+            <div class="badge">
+                <svg class="icon" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                Organizing Platform
             </div>
             <h1>Groundwork</h1>
-            <p class="subtitle">Organizing technology built by organizers, owned by organizers. Open source. Self-hosted. Your data, your rules.</p>
-            <div class="features-inline">
-                Voice Notes · Commitment Tracking · QR Check-in · Weekly Reflection<br>
-                Coaching Dashboard · Email Sync · Multi-Tenancy · POLIS Integration
+            <p class="tagline">Organizing technology built by organizers, owned by organizers. Open source. Self-hosted. Your data, your rules.</p>
+            <div class="features">
+                <span class="feature-tag">Voice Notes</span>
+                <span class="feature-tag">Commitment Tracking</span>
+                <span class="feature-tag">QR Check-in</span>
+                <span class="feature-tag">Weekly Reflection</span>
+                <span class="feature-tag">Coaching Dashboard</span>
+                <span class="feature-tag">POLIS Integration</span>
             </div>
-            <div class="accent-dot"></div>
         </div>
     </section>
 
@@ -1052,28 +1006,31 @@
          SLIDE 2: THE PROBLEM
          ========================================== -->
     <section class="slide problem-slide">
-        <h2 class="terminal-header">everyaction --status</h2>
-        <div class="card-grid">
+        <div class="section-header">
+            <h2>The Problem</h2>
+            <p>For 20 years, the organizing field has built political power on rented infrastructure.</p>
+        </div>
+        <div class="cards">
             <div class="card">
-                <div class="card-accent"></div>
-                <div class="label">owner</div>
+                <div class="icon-wrapper">
+                    <svg class="icon icon-lg" viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                </div>
                 <h3>Private Equity Ownership</h3>
                 <p>EveryAction acquired by Apax Partners ($80B fund). Your data serves investor returns.</p>
-                <div class="status">⚠ vendor-controlled</div>
             </div>
             <div class="card">
-                <div class="card-accent"></div>
-                <div class="label">pricing</div>
+                <div class="icon-wrapper">
+                    <svg class="icon icon-lg" viewBox="0 0 24 24"><path d="M23 6l-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/></svg>
+                </div>
                 <h3>Rising Costs</h3>
-                <p>Significant increases post-acquisition. Reduced support for small organizations.</p>
-                <div class="status">⚠ $500-2,000/mo</div>
+                <p>Significant price increases post-acquisition. Reduced support for small organizations.</p>
             </div>
             <div class="card">
-                <div class="card-accent"></div>
-                <div class="label">features</div>
+                <div class="icon-wrapper">
+                    <svg class="icon icon-lg" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                </div>
                 <h3>Locked Out</h3>
-                <p>Can't build what they won't build. Features oriented toward large institutions, not grassroots practice.</p>
-                <div class="status">⚠ no custom dev</div>
+                <p>Can't build custom features. Features oriented toward large institutions, not grassroots.</p>
             </div>
         </div>
     </section>
@@ -1082,31 +1039,38 @@
          SLIDE 3: WHY BUILD NOW
          ========================================== -->
     <section class="slide why-slide">
-        <h2 class="terminal-header">groundwork --why-now</h2>
-        <div class="card-grid">
+        <div class="section-header">
+            <h2>Why Build Now</h2>
+            <p>Modern tooling makes a production-quality custom build feasible in weeks, not years.</p>
+        </div>
+        <div class="cards">
             <div class="card">
-                <div class="card-accent"></div>
-                <div class="icon">⚡</div>
+                <div class="icon-wrapper">
+                    <svg class="icon icon-lg" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                </div>
                 <h3>Modern Tooling</h3>
-                <p>Supabase, Next.js, Vercel, Claude Code make production-quality builds feasible in <span class="highlight">weeks, not years</span>.</p>
+                <p>Supabase, Next.js, Vercel, Claude Code—production builds in <span class="highlight">weeks, not years</span>.</p>
             </div>
             <div class="card">
-                <div class="card-accent"></div>
-                <div class="icon">💰</div>
+                <div class="icon-wrapper">
+                    <svg class="icon icon-lg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 18V6"/></svg>
+                </div>
                 <h3>$50–200/month</h3>
                 <p>Infrastructure cost. Engineering cost with AI-assisted development: <span class="highlight">primarily your time</span>.</p>
             </div>
             <div class="card">
-                <div class="card-accent"></div>
-                <div class="icon">🔐</div>
+                <div class="icon-wrapper">
+                    <svg class="icon icon-lg" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
                 <h3>100% Data Ownership</h3>
-                <p>Your Postgres database. Export anytime. <span class="highlight">No vendor lock-in.</span></p>
+                <p>Your Postgres database. Export anytime. <span class="highlight">No vendor lock-in</span>.</p>
             </div>
             <div class="card">
-                <div class="card-accent"></div>
-                <div class="icon">🔬</div>
+                <div class="icon-wrapper">
+                    <svg class="icon icon-lg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                </div>
                 <h3>Research Integration</h3>
-                <p>Direct connection to POLIS/COMP. <span class="highlight">No export loops or vendor permission</span> required.</p>
+                <p>Direct connection to POLIS/COMP. <span class="highlight">No export loops</span> or vendor permission.</p>
             </div>
         </div>
     </section>
@@ -1114,25 +1078,40 @@
     <!-- ==========================================
          SLIDE 4: VOICE-FIRST NOTES
          ========================================== -->
-    <section class="slide voice-slide">
-        <div class="section-label">Core Feature</div>
-        <div class="content-wrapper">
+    <section class="slide feature-slide">
+        <div class="badge">Core Feature</div>
+        <div class="content-grid">
             <div class="text-content">
                 <h2>Voice-First 1-on-1 Notes</h2>
-                <p class="tagline">Design target: 30 seconds from tap to saved. Fast enough to log between conversations, on a phone, in the field.</p>
+                <p class="lead">Design target: 30 seconds from tap to saved. Fast enough to log between conversations, on a phone, in the field.</p>
                 <ul class="steps">
-                    <li data-step="01">Tap mic, speak your note naturally</li>
-                    <li data-step="02">AI transcribes using Web Speech API + Whisper fallback</li>
-                    <li data-step="03">AI extracts: commitment made, issues raised, follow-up needed, relationship depth</li>
-                    <li data-step="04">One-tap confirm or edit each field</li>
-                    <li data-step="05">Full transcript always preserved</li>
+                    <li>
+                        <span class="step-num">1</span>
+                        <span>Tap mic, speak your note naturally</span>
+                    </li>
+                    <li>
+                        <span class="step-num">2</span>
+                        <span>AI transcribes using Web Speech API with Whisper fallback</span>
+                    </li>
+                    <li>
+                        <span class="step-num">3</span>
+                        <span>AI extracts: commitment made, issues raised, follow-up needed</span>
+                    </li>
+                    <li>
+                        <span class="step-num">4</span>
+                        <span>One-tap confirm or edit each field</span>
+                    </li>
                 </ul>
             </div>
-            <div class="phone-mock">
-                <div class="screen">
-                    <div class="transcript">"Met with Maria today, she's fired up about the school board race. She committed to bringing five people to the training next week..."</div>
+            <div class="visual">
+                <div class="phone-frame">
+                    <div class="phone-screen">
+                        <p class="transcript">"Met with Maria today, she's fired up about the school board race. She committed to bringing five people to the training next week..."</p>
+                    </div>
+                    <div class="mic-button">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                    </div>
                 </div>
-                <div class="mic-btn">🎤</div>
             </div>
         </div>
     </section>
@@ -1141,65 +1120,123 @@
          SLIDE 5: COMMITMENT TRACKING
          ========================================== -->
     <section class="slide commit-slide">
-        <div class="section-label">Core Feature</div>
-        <h2>Commitment Tracking</h2>
-        <p class="tagline">The distinction between organizing and mobilizing lives here. Commitments must be tracked to completion—not noted and forgotten.</p>
-        <div class="flow">
-            <div class="flow-step">
-                <div class="icon">🤝</div>
-                <h3>Commit</h3>
-                <p>"I'll bring 5 people"</p>
-            </div>
-            <div class="flow-arrow">→</div>
-            <div class="flow-step">
-                <div class="icon">📋</div>
-                <h3>Track</h3>
-                <p>Surfaces in follow-up queue</p>
-            </div>
-            <div class="flow-arrow">→</div>
-            <div class="flow-step">
-                <div class="icon">🔔</div>
-                <h3>Auto-Flag</h3>
-                <p>Broken commitments flagged</p>
-            </div>
-            <div class="flow-arrow">→</div>
-            <div class="flow-step">
-                <div class="icon">📊</div>
-                <h3>Report</h3>
-                <p>Completion rates by team</p>
-            </div>
+        <div class="section-header">
+            <div class="badge">Core Feature</div>
+            <h2>Commitment Tracking</h2>
+            <p>The distinction between organizing and mobilizing. Commitments tracked to completion—not noted and forgotten.</p>
         </div>
-        <div class="statuses">
-            <span class="status-badge kept">✓ kept</span>
-            <span class="status-badge broken">✗ broken</span>
-            <span class="status-badge pending">◐ pending</span>
+        <div class="flow-container">
+            <div class="flow">
+                <div class="flow-step">
+                    <div class="icon-wrapper">
+                        <svg class="icon icon-lg" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    </div>
+                    <h3>Commit</h3>
+                    <p>"I'll bring 5 people"</p>
+                </div>
+                <svg class="flow-arrow" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                <div class="flow-step">
+                    <div class="icon-wrapper">
+                        <svg class="icon icon-lg" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                    </div>
+                    <h3>Track</h3>
+                    <p>Surfaces in queue</p>
+                </div>
+                <svg class="flow-arrow" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                <div class="flow-step">
+                    <div class="icon-wrapper">
+                        <svg class="icon icon-lg" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                    </div>
+                    <h3>Auto-Flag</h3>
+                    <p>Broken commits flagged</p>
+                </div>
+                <svg class="flow-arrow" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                <div class="flow-step">
+                    <div class="icon-wrapper">
+                        <svg class="icon icon-lg" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                    </div>
+                    <h3>Report</h3>
+                    <p>Completion rates</p>
+                </div>
+            </div>
+            <div class="statuses">
+                <span class="status kept">Kept</span>
+                <span class="status broken">Broken</span>
+                <span class="status pending">Pending</span>
+            </div>
         </div>
     </section>
 
     <!-- ==========================================
-         SLIDE 6: EVENT CHECK-IN
+         SLIDE 6: ANALYTICS EXAMPLE
          ========================================== -->
-    <section class="slide checkin-slide">
-        <div class="section-label">Core Feature</div>
-        <h2>Event Check-In: QR + iPad</h2>
-        <div class="methods">
-            <div class="method">
-                <div class="icon">📱</div>
-                <h3>QR Self Check-In</h3>
-                <p>Attendees scan a code at the door. Name pre-filled if registered, one tap confirms.</p>
-                <div class="tag">walk-ins auto-create contacts</div>
+    <section class="slide analytics-slide">
+        <div class="section-header">
+            <h2>Research-Ready Analytics</h2>
+            <p>Real data from 19 organizing groups. Direct export to POLIS research database.</p>
+        </div>
+        <div class="charts-grid">
+            <!-- Attrition Donut -->
+            <div class="chart-card">
+                <h3>Participant Retention</h3>
+                <p class="subtitle">N=41,625 participants across 19 organizations</p>
+                <div class="donut-container">
+                    <div class="donut-wrapper">
+                        <svg viewBox="0 0 100 100" style="transform: rotate(-90deg);">
+                            <!-- Grey: 70% -->
+                            <circle cx="50" cy="50" r="35" fill="none" stroke="#3f3f46" stroke-width="12"
+                                    stroke-dasharray="153.9 219.9" stroke-dashoffset="0"/>
+                            <!-- Blue: 21% -->
+                            <circle cx="50" cy="50" r="35" fill="none" stroke="#60a5fa" stroke-width="12"
+                                    stroke-dasharray="46.2 219.9" stroke-dashoffset="-153.9"/>
+                            <!-- Purple: 9% -->
+                            <circle cx="50" cy="50" r="35" fill="none" stroke="#5371ff" stroke-width="12"
+                                    stroke-dasharray="19.8 219.9" stroke-dashoffset="-200.1"/>
+                        </svg>
+                        <div class="donut-center">
+                            <div class="donut-value">70%</div>
+                            <div class="donut-label">exit</div>
+                        </div>
+                    </div>
+                    <div class="legend">
+                        <div class="legend-item">
+                            <div class="legend-dot" style="background: #3f3f46;"></div>
+                            <span class="legend-text">1 event (exit)</span>
+                            <span class="legend-value" style="color: #71717a;">70%</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-dot" style="background: #60a5fa;"></div>
+                            <span class="legend-text">2-4 events (engaged)</span>
+                            <span class="legend-value" style="color: #60a5fa;">21%</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-dot" style="background: #5371ff;"></div>
+                            <span class="legend-text">5+ events (leaders)</span>
+                            <span class="legend-value" style="color: #5371ff;">9%</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="method">
-                <div class="icon">📋</div>
-                <h3>iPad Roster Mode</h3>
-                <p>Large-text, one-tap check-in per person. Works offline, syncs when connected.</p>
-                <div class="tag">clinic/DMV model</div>
-            </div>
-            <div class="method">
-                <div class="icon">👤</div>
-                <h3>Staff Override</h3>
-                <p>Organizer can check in any registered person manually from any device.</p>
-                <div class="tag">broken commits auto-flagged</div>
+
+            <!-- Network Visualization -->
+            <div class="chart-card">
+                <h3>Recruitment Network</h3>
+                <p class="subtitle">Who recruited whom — cascade vs. hub-and-spoke patterns</p>
+                <div class="network-viz" id="network"></div>
+                <div class="legend" style="margin-top: 1rem; display: flex; gap: 1.5rem; justify-content: center;">
+                    <div class="legend-item">
+                        <div class="legend-dot" style="background: #5371ff;"></div>
+                        <span class="legend-text">Power Recruiter</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-dot" style="background: #7c3aed;"></div>
+                        <span class="legend-text">Strong</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-dot" style="background: #60a5fa;"></div>
+                        <span class="legend-text">Recruiter</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -1207,233 +1244,211 @@
     <!-- ==========================================
          SLIDE 7: WEEKLY REFLECTION
          ========================================== -->
-    <section class="slide reflect-slide">
-        <div class="section-label">Core Feature</div>
-        <div class="content-wrapper">
+    <section class="slide reflect-slide feature-slide">
+        <div class="badge">Core Feature</div>
+        <div class="content-grid">
             <div class="text-content">
                 <h2>Weekly Organizer Reflection</h2>
-                <p class="tagline">Not a reporting burden—a practice that makes organizers better. Pre-populate everything possible, leave space only for what requires human reflection.</p>
+                <p class="lead">Not a reporting burden—a practice that makes organizers better. Pre-populate everything possible, leave space only for reflection.</p>
                 <ul class="fields">
-                    <li><span class="field-name">headline:</span> <span class="field-desc">What was your headline this week?</span></li>
-                    <li><span class="field-name">risks_taken:</span> <span class="field-desc">What risks did you take?</span></li>
-                    <li><span class="field-name">risks_avoided:</span> <span class="field-desc">What risks did you back away from?</span></li>
-                    <li><span class="field-name">learning:</span> <span class="field-desc">What are you learning?</span></li>
-                    <li><span class="field-name">invest_in:</span> <span class="field-desc">One person to invest in next week</span></li>
-                    <li><span class="field-name">energy:</span> <span class="field-desc">1–5 🔋→⚡</span></li>
+                    <li class="field-row">
+                        <span class="field-name">headline</span>
+                        <span class="field-desc">What was your headline this week?</span>
+                    </li>
+                    <li class="field-row">
+                        <span class="field-name">risks_taken</span>
+                        <span class="field-desc">What risks did you take?</span>
+                    </li>
+                    <li class="field-row">
+                        <span class="field-name">risks_avoided</span>
+                        <span class="field-desc">What did you back away from?</span>
+                    </li>
+                    <li class="field-row">
+                        <span class="field-name">learning</span>
+                        <span class="field-desc">What are you learning?</span>
+                    </li>
+                    <li class="field-row">
+                        <span class="field-name">invest_in</span>
+                        <span class="field-desc">One person to invest in next week</span>
+                    </li>
                 </ul>
             </div>
-            <div class="memo-preview">
-                <div class="header">weekly_reflection // 2026-03-07</div>
-                <div class="headline">"Breakthrough with the Northside team"</div>
-                <div class="content">
-                    Took a risk pushing Maria to co-lead the house meeting—she crushed it. Still avoiding the hard conversation with James about his follow-through...
-                </div>
-                <div class="coach-note">💬 Coach: "Push on James this week. You've got this."</div>
+            <div class="memo-card">
+                <div class="memo-header">weekly_reflection // 2026-03-07</div>
+                <div class="memo-headline">"Breakthrough with the Northside team"</div>
+                <p class="memo-body">Took a risk pushing Maria to co-lead the house meeting—she crushed it. Still avoiding the hard conversation with James about his follow-through...</p>
+                <div class="coach-note">Coach: "Push on James this week. You've got this."</div>
             </div>
         </div>
     </section>
 
     <!-- ==========================================
-         SLIDE 8: ALL FEATURES
+         SLIDE 8: FEATURES GRID
          ========================================== -->
-    <section class="slide features-slide">
-        <h2>Full Feature Set</h2>
-        <div class="feature-grid">
-            <div class="feature-item">
-                <div class="icon">👥</div>
-                <h3>Contact Database</h3>
+    <section class="slide features-grid-slide">
+        <div class="section-header">
+            <h2>Full Feature Set</h2>
+        </div>
+        <div class="grid">
+            <div class="feature-card">
+                <div class="icon-wrapper">
+                    <svg class="icon icon-lg" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                </div>
+                <h3>Contacts</h3>
             </div>
-            <div class="feature-item">
-                <div class="icon">🎤</div>
+            <div class="feature-card">
+                <div class="icon-wrapper">
+                    <svg class="icon icon-lg" viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/></svg>
+                </div>
                 <h3>Voice Notes</h3>
             </div>
-            <div class="feature-item">
-                <div class="icon">🤝</div>
+            <div class="feature-card">
+                <div class="icon-wrapper">
+                    <svg class="icon icon-lg" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                </div>
                 <h3>Commitments</h3>
             </div>
-            <div class="feature-item">
-                <div class="icon">📅</div>
+            <div class="feature-card">
+                <div class="icon-wrapper">
+                    <svg class="icon icon-lg" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                </div>
                 <h3>Events</h3>
             </div>
-            <div class="feature-item">
-                <div class="icon">📱</div>
-                <h3>QR Check-In</h3>
+            <div class="feature-card">
+                <div class="icon-wrapper">
+                    <svg class="icon icon-lg" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 7h3v3H7zM14 7h3v3h-3zM7 14h3v3H7zM14 14h3v3h-3z"/></svg>
+                </div>
+                <h3>QR Check-in</h3>
             </div>
-            <div class="feature-item">
-                <div class="icon">📝</div>
+            <div class="feature-card">
+                <div class="icon-wrapper">
+                    <svg class="icon icon-lg" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                </div>
                 <h3>Reflections</h3>
             </div>
-            <div class="feature-item">
-                <div class="icon">👔</div>
+            <div class="feature-card">
+                <div class="icon-wrapper">
+                    <svg class="icon icon-lg" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                </div>
                 <h3>Coaching</h3>
             </div>
-            <div class="feature-item">
-                <div class="icon">📧</div>
-                <h3>Email Sync</h3>
+            <div class="feature-card">
+                <div class="icon-wrapper">
+                    <svg class="icon icon-lg" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                </div>
+                <h3>Email</h3>
             </div>
-            <div class="feature-item">
-                <div class="icon">🗺️</div>
-                <h3>Map Views</h3>
+            <div class="feature-card">
+                <div class="icon-wrapper">
+                    <svg class="icon icon-lg" viewBox="0 0 24 24"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+                </div>
+                <h3>Maps</h3>
             </div>
-            <div class="feature-item">
-                <div class="icon">📊</div>
+            <div class="feature-card">
+                <div class="icon-wrapper">
+                    <svg class="icon icon-lg" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                </div>
                 <h3>Analytics</h3>
             </div>
-            <div class="feature-item">
-                <div class="icon">🔗</div>
-                <h3>Relationships</h3>
+            <div class="feature-card">
+                <div class="icon-wrapper">
+                    <svg class="icon icon-lg" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                </div>
+                <h3>Network</h3>
             </div>
-            <div class="feature-item">
-                <div class="icon">🏢</div>
+            <div class="feature-card">
+                <div class="icon-wrapper">
+                    <svg class="icon icon-lg" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                </div>
                 <h3>Multi-Tenant</h3>
             </div>
         </div>
     </section>
 
     <!-- ==========================================
-         SLIDE 9: TECH STACK
-         ========================================== -->
-    <section class="slide stack-slide">
-        <h2 class="terminal-header">cat stack.yml</h2>
-        <div class="stack-grid">
-            <div class="stack-item">
-                <div class="layer">frontend</div>
-                <div class="tech">Next.js 14</div>
-            </div>
-            <div class="stack-item">
-                <div class="layer">ui</div>
-                <div class="tech">shadcn/ui</div>
-            </div>
-            <div class="stack-item">
-                <div class="layer">database</div>
-                <div class="tech">Supabase</div>
-            </div>
-            <div class="stack-item">
-                <div class="layer">auth</div>
-                <div class="tech">Supabase Auth</div>
-            </div>
-            <div class="stack-item">
-                <div class="layer">email</div>
-                <div class="tech">Resend</div>
-            </div>
-            <div class="stack-item">
-                <div class="layer">hosting</div>
-                <div class="tech">Vercel</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ==========================================
-         SLIDE 10: COMPARISON
+         SLIDE 9: COMPARISON
          ========================================== -->
     <section class="slide compare-slide">
-        <h2 class="terminal-header">everyaction groundwork</h2>
-        <div class="compare-container">
-            <div class="compare-box old">
-                <div class="header">— everyaction</div>
-                <div class="compare-line">
-                    <span class="label">monthly_cost:</span>
-                    <span class="value">$500–2,000+</span>
+        <div class="section-header">
+            <h2>EveryAction vs. Groundwork</h2>
+        </div>
+        <div class="compare-grid">
+            <div class="compare-card old">
+                <div class="compare-header">EveryAction</div>
+                <div class="compare-row">
+                    <span class="compare-label">Monthly cost</span>
+                    <span class="compare-value">$500–2,000+</span>
                 </div>
-                <div class="compare-line">
-                    <span class="label">data_ownership:</span>
-                    <span class="value">vendor</span>
+                <div class="compare-row">
+                    <span class="compare-label">Data ownership</span>
+                    <span class="compare-value">Vendor</span>
                 </div>
-                <div class="compare-line">
-                    <span class="label">voice_notes:</span>
-                    <span class="value">no</span>
+                <div class="compare-row">
+                    <span class="compare-label">Voice notes</span>
+                    <span class="compare-value">No</span>
                 </div>
-                <div class="compare-line">
-                    <span class="label">commitment_track:</span>
-                    <span class="value">no</span>
+                <div class="compare-row">
+                    <span class="compare-label">Commitment tracking</span>
+                    <span class="compare-value">No</span>
                 </div>
-                <div class="compare-line">
-                    <span class="label">weekly_reflection:</span>
-                    <span class="value">no</span>
+                <div class="compare-row">
+                    <span class="compare-label">Weekly reflection</span>
+                    <span class="compare-value">No</span>
                 </div>
-                <div class="compare-line">
-                    <span class="label">research_export:</span>
-                    <span class="value">limited</span>
+                <div class="compare-row">
+                    <span class="compare-label">Research export</span>
+                    <span class="compare-value">Limited</span>
                 </div>
             </div>
-            <div class="compare-box new">
-                <div class="header">+ groundwork</div>
-                <div class="compare-line">
-                    <span class="label">monthly_cost:</span>
-                    <span class="value">$50–200</span>
+            <div class="compare-card new">
+                <div class="compare-header">Groundwork</div>
+                <div class="compare-row">
+                    <span class="compare-label">Monthly cost</span>
+                    <span class="compare-value">$50–200</span>
                 </div>
-                <div class="compare-line">
-                    <span class="label">data_ownership:</span>
-                    <span class="value">100% yours</span>
+                <div class="compare-row">
+                    <span class="compare-label">Data ownership</span>
+                    <span class="compare-value">100% yours</span>
                 </div>
-                <div class="compare-line">
-                    <span class="label">voice_notes:</span>
-                    <span class="value">yes + AI extract</span>
+                <div class="compare-row">
+                    <span class="compare-label">Voice notes</span>
+                    <span class="compare-value">Yes + AI extract</span>
                 </div>
-                <div class="compare-line">
-                    <span class="label">commitment_track:</span>
-                    <span class="value">yes + auto-flag</span>
+                <div class="compare-row">
+                    <span class="compare-label">Commitment tracking</span>
+                    <span class="compare-value">Yes + auto-flag</span>
                 </div>
-                <div class="compare-line">
-                    <span class="label">weekly_reflection:</span>
-                    <span class="value">yes + coaching</span>
+                <div class="compare-row">
+                    <span class="compare-label">Weekly reflection</span>
+                    <span class="compare-value">Yes + coaching</span>
                 </div>
-                <div class="compare-line">
-                    <span class="label">research_export:</span>
-                    <span class="value">direct postgres</span>
+                <div class="compare-row">
+                    <span class="compare-label">Research export</span>
+                    <span class="compare-value">Direct Postgres</span>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- ==========================================
-         SLIDE 11: TIMELINE
-         ========================================== -->
-    <section class="slide timeline-slide">
-        <h2>Phased Build Plan</h2>
-        <div class="phases">
-            <div class="phase">
-                <div class="num">Phase 0–1</div>
-                <h3>Foundation</h3>
-                <p>Repo setup, Supabase schema, auth, contact database with filters and CSV import</p>
-            </div>
-            <div class="phase">
-                <div class="num">Phase 2–3</div>
-                <h3>Core Organizing</h3>
-                <p>Voice notes with AI extraction, commitment tracking, events with QR check-in</p>
-            </div>
-            <div class="phase">
-                <div class="num">Phase 4–5</div>
-                <h3>Coaching & Comms</h3>
-                <p>Weekly reflections, coaching dashboard, Constant Contact sync, email campaigns</p>
-            </div>
-            <div class="phase">
-                <div class="num">Phase 6–8</div>
-                <h3>Scale & Research</h3>
-                <p>Multi-tenancy, analytics, POLIS integration, security audit, mobile optimization</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- ==========================================
-         SLIDE 12: CTA
+         SLIDE 10: CTA
          ========================================== -->
     <section class="slide cta-slide">
-        <div class="cta-card">
+        <div class="cta-content">
             <h2>Let's Build This</h2>
-            <p>The organizing world has built extraordinary political power on rented infrastructure for 20 years. Groundwork is a chance to change that.</p>
-            <div class="next-steps">
-                <div><span>01</span> Create Supabase project</div>
-                <div><span>02</span> Clone starter repo</div>
-                <div><span>03</span> Deploy to Vercel</div>
-                <div><span>04</span> Start building with Claude Code</div>
+            <p class="lead">The organizing world has built extraordinary political power on rented infrastructure for 20 years. Groundwork is a chance to change that.</p>
+            <div class="steps-list">
+                <div class="step"><span class="step-num">01</span> Create Supabase project</div>
+                <div class="step"><span class="step-num">02</span> Clone starter repo</div>
+                <div class="step"><span class="step-num">03</span> Deploy to Vercel</div>
+                <div class="step"><span class="step-num">04</span> Start building with Claude Code</div>
             </div>
         </div>
     </section>
 
     <script>
         /* ===========================================
-           SLIDE PRESENTATION CONTROLLER
+           SLIDE CONTROLLER
            =========================================== */
         class SlidePresentation {
             constructor() {
@@ -1445,6 +1460,7 @@
                 this.createNavDots();
                 this.setupObserver();
                 this.setupKeyboard();
+                this.createNetwork();
             }
 
             createNavDots() {
@@ -1501,6 +1517,113 @@
                 if (index >= 0 && index < this.slides.length) {
                     this.slides[index].scrollIntoView({ behavior: 'smooth' });
                 }
+            }
+
+            // Create network visualization
+            createNetwork() {
+                const container = document.getElementById('network');
+                if (!container) return;
+
+                const width = container.offsetWidth;
+                const height = container.offsetHeight;
+
+                // Network nodes based on purple-line data
+                const nodes = [
+                    // Power recruiters (10+)
+                    { id: 1, x: 0.5, y: 0.4, size: 28, type: 'power', label: 'M' },
+                    { id: 2, x: 0.3, y: 0.5, size: 24, type: 'power', label: 'J' },
+                    // Strong recruiters (5-9)
+                    { id: 3, x: 0.7, y: 0.35, size: 20, type: 'strong', label: 'A' },
+                    { id: 4, x: 0.25, y: 0.3, size: 18, type: 'strong', label: 'T' },
+                    { id: 5, x: 0.65, y: 0.6, size: 16, type: 'strong', label: 'R' },
+                    // Regular recruiters
+                    { id: 6, x: 0.4, y: 0.25, size: 14, type: 'recruiter', label: '' },
+                    { id: 7, x: 0.55, y: 0.55, size: 12, type: 'recruiter', label: '' },
+                    { id: 8, x: 0.15, y: 0.45, size: 12, type: 'recruiter', label: '' },
+                    { id: 9, x: 0.8, y: 0.5, size: 12, type: 'recruiter', label: '' },
+                    { id: 10, x: 0.35, y: 0.65, size: 10, type: 'recruiter', label: '' },
+                    // Participants
+                    { id: 11, x: 0.45, y: 0.15, size: 8, type: 'participant', label: '' },
+                    { id: 12, x: 0.6, y: 0.2, size: 8, type: 'participant', label: '' },
+                    { id: 13, x: 0.75, y: 0.25, size: 8, type: 'participant', label: '' },
+                    { id: 14, x: 0.85, y: 0.4, size: 8, type: 'participant', label: '' },
+                    { id: 15, x: 0.9, y: 0.6, size: 8, type: 'participant', label: '' },
+                    { id: 16, x: 0.78, y: 0.7, size: 8, type: 'participant', label: '' },
+                    { id: 17, x: 0.55, y: 0.75, size: 8, type: 'participant', label: '' },
+                    { id: 18, x: 0.4, y: 0.8, size: 8, type: 'participant', label: '' },
+                    { id: 19, x: 0.2, y: 0.7, size: 8, type: 'participant', label: '' },
+                    { id: 20, x: 0.1, y: 0.55, size: 8, type: 'participant', label: '' },
+                    { id: 21, x: 0.12, y: 0.35, size: 8, type: 'participant', label: '' },
+                    { id: 22, x: 0.22, y: 0.2, size: 8, type: 'participant', label: '' },
+                ];
+
+                // Edges
+                const edges = [
+                    // Power recruiter 1 connections (cascade)
+                    { from: 1, to: 3, cascade: true },
+                    { from: 1, to: 5, cascade: true },
+                    { from: 1, to: 7, cascade: true },
+                    { from: 1, to: 11, cascade: false },
+                    { from: 1, to: 12, cascade: false },
+                    // Power recruiter 2 connections
+                    { from: 2, to: 4, cascade: true },
+                    { from: 2, to: 8, cascade: true },
+                    { from: 2, to: 10, cascade: true },
+                    { from: 2, to: 19, cascade: false },
+                    { from: 2, to: 20, cascade: false },
+                    // Strong recruiters
+                    { from: 3, to: 9, cascade: true },
+                    { from: 3, to: 13, cascade: false },
+                    { from: 3, to: 14, cascade: false },
+                    { from: 4, to: 6, cascade: true },
+                    { from: 4, to: 21, cascade: false },
+                    { from: 4, to: 22, cascade: false },
+                    { from: 5, to: 15, cascade: false },
+                    { from: 5, to: 16, cascade: false },
+                    { from: 5, to: 17, cascade: false },
+                    // Regular recruiters
+                    { from: 6, to: 11, cascade: false },
+                    { from: 7, to: 17, cascade: false },
+                    { from: 8, to: 20, cascade: false },
+                    { from: 9, to: 14, cascade: false },
+                    { from: 9, to: 15, cascade: false },
+                    { from: 10, to: 18, cascade: false },
+                    { from: 10, to: 19, cascade: false },
+                ];
+
+                // Draw edges first
+                edges.forEach(edge => {
+                    const fromNode = nodes.find(n => n.id === edge.from);
+                    const toNode = nodes.find(n => n.id === edge.to);
+
+                    const x1 = fromNode.x * width;
+                    const y1 = fromNode.y * height;
+                    const x2 = toNode.x * width;
+                    const y2 = toNode.y * height;
+
+                    const length = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+                    const angle = Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
+
+                    const edgeEl = document.createElement('div');
+                    edgeEl.className = 'network-edge' + (edge.cascade ? ' cascade' : '');
+                    edgeEl.style.left = x1 + 'px';
+                    edgeEl.style.top = y1 + 'px';
+                    edgeEl.style.width = length + 'px';
+                    edgeEl.style.transform = `rotate(${angle}deg)`;
+                    container.appendChild(edgeEl);
+                });
+
+                // Draw nodes
+                nodes.forEach(node => {
+                    const nodeEl = document.createElement('div');
+                    nodeEl.className = 'network-node ' + node.type;
+                    nodeEl.style.width = node.size + 'px';
+                    nodeEl.style.height = node.size + 'px';
+                    nodeEl.style.left = (node.x * width - node.size / 2) + 'px';
+                    nodeEl.style.top = (node.y * height - node.size / 2) + 'px';
+                    nodeEl.textContent = node.label;
+                    container.appendChild(nodeEl);
+                });
             }
         }
 
